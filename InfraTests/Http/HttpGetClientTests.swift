@@ -85,4 +85,12 @@ extension HttpGetClientTests {
         XCTAssertTrue(receivedRequest!.url!.absoluteString.contains(url.absoluteString), file: file, line: line)
         XCTAssertEqual(receivedRequest?.httpMethod, method.rawValue, file: file, line: line)
     }
+    
+    private func anyURLResponse() -> URLResponse {
+        return URLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 1, textEncodingName: "")
+    }
+
+    private func anyHTTPURLResponse(statusCode: Int = 0) -> HTTPURLResponse {
+        return HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: "", headerFields: nil)!
+    }
 }

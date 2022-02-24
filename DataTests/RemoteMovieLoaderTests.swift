@@ -10,28 +10,6 @@ import XCTest
 import Domain
 import Data
 
-final class RemoteMovieLoader: MovieLoader {
-    let url: URL
-    let httpClient: HttpGetClient
-    
-    public init(url: URL, httpClient: HttpGetClient) {
-        self.url = url
-        self.httpClient = httpClient
-    }
-    
-    func load(completion: @escaping (MovieLoader.Result) -> Void) {
-        httpClient.get(to: url) { [weak self] result in
-            guard self != nil else { return }
-            switch result {
-            case .success(let data):
-                guard let movies = MovieResponseMapper.toMovie(with: data) else { return completion(.failure(.invalidData)) }
-                completion(.success(movies))
-            case .failure:
-                completion(.failure(.unexpected))
-            }
-        }
-    }
-}
 
 final class RemoteMovieLoaderTests: XCTestCase {
     func test_init_doesNotRequestDataFromURl() {
@@ -117,7 +95,7 @@ private extension RemoteMovieLoaderTests {
         return (sut, clientSPY)
     }
     
-    private func expect(sut: RemoteMovieLoader,
+    func expect(sut: RemoteMovieLoader,
                         toCompleteWith expectedResult: MovieLoader.Result,
                         when action: () -> Void,
                         file: StaticString = #filePath,

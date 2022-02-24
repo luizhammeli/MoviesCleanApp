@@ -8,6 +8,7 @@
 import Foundation
 import XCTest
 import Data
+import Infra
 
 public final class URLSessionHttpGetClient: HttpGetClient {
     let urlSession: URLSession
@@ -21,14 +22,14 @@ public final class URLSessionHttpGetClient: HttpGetClient {
             guard let self = self else { return }
             if error == nil { return completion(.failure(.serverError)) }
             
-            guard let response = response as? HTTPURLResponse, let data = data else { return completion(.failure(.badRequest)) }
+            guard let response = response as? HTTPURLResponse else { return completion(.failure(.invalidResponse)) }
             let result = self.checkResponseData(response: response, data: data)
             completion(result)
         }
         task.resume()
     }
     
-    private func checkResponseData(response: HTTPURLResponse, data: Data) -> HttpGetClient.Result {
+    private func checkResponseData(response: HTTPURLResponse, data: Data?) -> HttpGetClient.Result {
         switch response.statusCode {
         case 204:
             return .success(nil)
@@ -57,7 +58,9 @@ final class HttpGetClientTests: XCTestCase {
         URLProtocolStub.stopIntercepting()
     }
     
-    func test_fetch_shouldRequestWithCorrectURLForGetMethod() {        
+    func test_should_make_request_with_valid_data_url_and_method() {
+        let url = anyURL()
+        testRequest(url: url, for: .get)
     }
 }
 
@@ -67,5 +70,19 @@ extension HttpGetClientTests {
         configuration.protocolClasses = [URLProtocolStub.self]
         let sut = URLSessionHttpGetClient(urlSession: URLSession(configuration: configuration))
         return sut
+    }
+    
+    private func testRequest(url: URL, for method: HTTPMethod, file: StaticString = #filePath, line: UInt = #line) {
+        let sut = makeSUT()
+        var receivedRequest: URLRequest?
+
+        let expectation = expectation(description: "Waiting for request")
+        URLProtocolStub.observeRequest { receivedRequest = $0 }
+        sut.get(url) { _ in expectation.fulfill() }
+
+        wait(for: [expectation], timeout: 1)
+
+        XCTAssertTrue(receivedRequest!.url!.absoluteString.contains(url.absoluteString), file: file, line: line)
+        XCTAssertEqual(receivedRequest?.httpMethod, method.rawValue, file: file, line: line)
     }
 }

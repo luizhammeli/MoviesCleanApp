@@ -13,4 +13,5 @@ public enum HttpError: Error {
     case unauthorized
     case serverError
     case badRequest
+    case invalidResponse
 }

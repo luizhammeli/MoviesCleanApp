@@ -19,7 +19,7 @@ final class HttpGetClientSpy: HttpGetClient {
         messages.count
     }
     
-    func get(to url: URL, completion: @escaping (HttpGetClient.Result) -> Void) {
+    func get(_ url: URL, completion: @escaping (HttpGetClient.Result) -> Void) {
         messages.append((url, completion))
     }
     

@@ -9,5 +9,5 @@ import Foundation
 
 public protocol HttpGetClient {
     typealias Result = Swift.Result<Data?, HttpError>
-    func get(to url: URL, completion: @escaping (Result) -> Void)
+    func get(_ url: URL, completion: @escaping (Result) -> Void)
 }

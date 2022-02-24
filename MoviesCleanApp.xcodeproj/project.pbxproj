@@ -22,6 +22,8 @@
 		25364CA227C7EBC60039496C /* MovieResponse+Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CA127C7EBC60039496C /* MovieResponse+Encoder.swift */; };
 		25364CA527C7EC120039496C /* TestFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CA427C7EC120039496C /* TestFactories.swift */; };
 		25364CB327C7EF070039496C /* Infra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25364CAB27C7EF070039496C /* Infra.framework */; };
+		25364CC127C7F0210039496C /* URLSessionHttpClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CC027C7F0210039496C /* URLSessionHttpClientTests.swift */; };
+		25364CC427C7F1130039496C /* URLSessionHttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CC327C7F1130039496C /* URLSessionHttpClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		25364CA427C7EC120039496C /* TestFactories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFactories.swift; sourceTree = "<group>"; };
 		25364CAB27C7EF070039496C /* Infra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Infra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		25364CB227C7EF070039496C /* InfraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InfraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		25364CC027C7F0210039496C /* URLSessionHttpClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHttpClientTests.swift; sourceTree = "<group>"; };
+		25364CC327C7F1130039496C /* URLSessionHttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHttpClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +250,7 @@
 		25364CAC27C7EF070039496C /* Infra */ = {
 			isa = PBXGroup;
 			children = (
+				25364CC327C7F1130039496C /* URLSessionHttpClient.swift */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
@@ -253,8 +258,17 @@
 		25364CB627C7EF070039496C /* InfraTests */ = {
 			isa = PBXGroup;
 			children = (
+				25364CC227C7F03A0039496C /* Http */,
 			);
 			path = InfraTests;
+			sourceTree = "<group>";
+		};
+		25364CC227C7F03A0039496C /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				25364CC027C7F0210039496C /* URLSessionHttpClientTests.swift */,
+			);
+			path = Http;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,9 +414,11 @@
 					};
 					25364CAA27C7EF070039496C = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 					25364CB127C7EF070039496C = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 				};
 			};
@@ -503,6 +519,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25364CC427C7F1130039496C /* URLSessionHttpClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +527,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25364CC127C7F0210039496C /* URLSessionHttpClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,6 +839,7 @@
 		25364CBB27C7EF070039496C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -842,6 +861,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -849,6 +869,7 @@
 		25364CBC27C7EF070039496C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -877,14 +898,22 @@
 		25364CBE27C7EF070039496C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M2DD4Z95YZ;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = LuizHammerli.InfraTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -892,10 +921,17 @@
 		25364CBF27C7EF070039496C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M2DD4Z95YZ;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = LuizHammerli.InfraTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

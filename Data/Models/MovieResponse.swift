@@ -8,6 +8,14 @@
 import Foundation
 import Domain
 
-struct MovieResponse: Codable, Equatable {
-    let results: [Movie]
+public struct MovieResponse: Codable, Equatable {
+    public let results: [Movie]
+}
+
+public final class MovieResponseMapper {
+    public static func toMovie(with data: Data?) -> [Movie]? {
+        guard let data = data else { return nil }
+        guard let movieResponse = try? JSONDecoder().decode(MovieResponse.self, from: data) else { return nil }
+        return movieResponse.results
+    }
 }

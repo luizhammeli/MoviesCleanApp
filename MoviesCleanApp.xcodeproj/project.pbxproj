@@ -17,6 +17,7 @@
 		25364C9427C7B2370039496C /* RemoteMovieLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364C9327C7B2370039496C /* RemoteMovieLoaderTests.swift */; };
 		25364C9727C7B33D0039496C /* HttpGetClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364C9627C7B33D0039496C /* HttpGetClient.swift */; };
 		25364C9927C7B35E0039496C /* HttpError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364C9827C7B35E0039496C /* HttpError.swift */; };
+		25364C9C27C7D7670039496C /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364C9B27C7D7670039496C /* MovieResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		25364C9327C7B2370039496C /* RemoteMovieLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMovieLoaderTests.swift; sourceTree = "<group>"; };
 		25364C9627C7B33D0039496C /* HttpGetClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpGetClient.swift; sourceTree = "<group>"; };
 		25364C9827C7B35E0039496C /* HttpError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpError.swift; sourceTree = "<group>"; };
+		25364C9B27C7D7670039496C /* MovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 		25364C7527C7AF200039496C /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				25364C9A27C7D7620039496C /* Models */,
 				25364C9527C7B3280039496C /* Http */,
 				25364C8F27C7B0190039496C /* RemoteMovieLoader.swift */,
 			);
@@ -176,6 +179,14 @@
 				25364C9827C7B35E0039496C /* HttpError.swift */,
 			);
 			path = Http;
+			sourceTree = "<group>";
+		};
+		25364C9A27C7D7620039496C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				25364C9B27C7D7670039496C /* MovieResponse.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25364C9727C7B33D0039496C /* HttpGetClient.swift in Sources */,
+				25364C9C27C7D7670039496C /* MovieResponse.swift in Sources */,
 				25364C9927C7B35E0039496C /* HttpError.swift in Sources */,
 				25364C9027C7B0190039496C /* RemoteMovieLoader.swift in Sources */,
 			);

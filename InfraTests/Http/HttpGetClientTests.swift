@@ -26,6 +26,7 @@ public final class URLSessionHttpGetClient: HttpGetClient {
             let result = self.checkResponseData(response: response, data: data)
             completion(result)
         }
+        
         task.resume()
     }
     
@@ -64,6 +65,37 @@ final class HttpGetClientTests: XCTestCase {
 
     func test_fetch_shouldFailWhenRequestCompletesWithError() {
         expect(.failure(.noConnectivity), when: .init(data: nil, response: nil, error: anyNSError()))
+    }
+    
+    func test_fetch_shouldFailWithAllInvalidCases() {
+        expect(.failure(.invalidResponse), when: .init(data: nil, response: nil, error: nil))
+        expect(.failure(.invalidResponse), when: .init(data: anyData(), response: nil, error: nil))
+        expect(.failure(.invalidResponse), when: .init(data: nil, response: anyURLResponse(), error: nil))
+        expect(.failure(.invalidResponse), when: .init(data: anyData(), response: anyURLResponse(), error: nil))
+        expect(.failure(.invalidResponse), when: .init(data: anyData(), response: anyURLResponse(), error: nil))
+        expect(.failure(.noConnectivity), when: .init(data: nil, response: anyHTTPURLResponse(), error: nil))
+        expect(.failure(.noConnectivity), when: .init(data: anyData(), response: anyURLResponse(), error: anyNSError()))
+    }
+    
+    func test_fetch_shouldFailIfRequestCompletesWithNon200Status() {
+        let data = anyData()
+        expect(.failure(.serverError), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 500), error: nil))
+        expect(.failure(.badRequest), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 400), error: nil))
+        expect(.failure(.unauthorized), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 401), error: nil))
+        expect(.failure(.forbidden), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 403), error: nil))
+        expect(.failure(.badRequest), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 404), error: nil))
+        expect(.failure(.badRequest), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 499), error: nil))
+        expect(.failure(.noConnectivity), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 600), error: nil))
+    }
+    
+    func test_fetch_shouldSucceedWithValidResponseAndData() {
+        let data = anyData()
+        expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil))
+    }
+
+    func test_fetch_shouldSucceedWithEmptyData() {
+        let data = Data()
+        expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil))
     }
 }
 

@@ -21,7 +21,7 @@ final class RemoteMovieLoader: MovieLoader {
     
     func load(completion: @escaping (MovieLoader.Result) -> Void) {
         httpClient.get(to: url) { result in
-            
+            completion(.failure(.unexpected))
         }
     }
 }
@@ -54,8 +54,8 @@ final class RemoteMovieLoaderTests: XCTestCase {
     
     func test_load_deliversErrorOnClientError() {
         let (sut, clientSpy) = makeSut()
-        expect(sut: sut, toCompleteWith: failure(.connectivity)) {
-            clientSpy.complete(with: NSError(domain: "", code: 0, userInfo: nil))
+        expect(sut: sut, toCompleteWith: .failure(.unexpected)) {
+            clientSpy.complete(with: .failure(.unauthorized))
         }
     }
 }
@@ -95,7 +95,7 @@ private extension RemoteMovieLoaderTests {
 }
 
 final class HttpGetClientSpy: HttpGetClient {
-    private var messages: [(url: URL, completion: (Result<Data?, HttpError>) -> Void)] = []
+    private var messages: [(url: URL, completion: (HttpGetClient.Result) -> Void)] = []
     
     var requestedURLS: [URL] {
         return messages.map { $0.url }
@@ -105,9 +105,11 @@ final class HttpGetClientSpy: HttpGetClient {
         messages.count
     }
     
-    func get(to url: URL, completion: @escaping (Result<Data?, HttpError>) -> Void) {
+    func get(to url: URL, completion: @escaping (HttpGetClient.Result) -> Void) {
         messages.append((url, completion))
     }
     
-    complete(with expectedResult: )
+    func complete(with expectedResult: HttpGetClient.Result, at index: Int = 0) {
+        messages[index].completion(expectedResult)
+    }
 }

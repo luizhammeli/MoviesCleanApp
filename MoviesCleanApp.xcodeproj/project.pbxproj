@@ -14,6 +14,7 @@
 		25364C8A27C7AF650039496C /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25364C5C27C7AC6D0039496C /* Domain.framework */; };
 		25364C8B27C7AF650039496C /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25364C5C27C7AC6D0039496C /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		25364C9027C7B0190039496C /* RemoteMovieLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364C8F27C7B0190039496C /* RemoteMovieLoader.swift */; };
+		25364C9427C7B2370039496C /* RemoteMovieLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364C9327C7B2370039496C /* RemoteMovieLoaderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		25364C7427C7AF200039496C /* Data.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Data.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		25364C7B27C7AF200039496C /* DataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25364C8F27C7B0190039496C /* RemoteMovieLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMovieLoader.swift; sourceTree = "<group>"; };
+		25364C9327C7B2370039496C /* RemoteMovieLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMovieLoaderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 		25364C7F27C7AF200039496C /* DataTests */ = {
 			isa = PBXGroup;
 			children = (
+				25364C9327C7B2370039496C /* RemoteMovieLoaderTests.swift */,
 			);
 			path = DataTests;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 					};
 					25364C7A27C7AF200039496C = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 				};
 			};
@@ -327,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25364C9427C7B2370039496C /* RemoteMovieLoaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,14 +594,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M2DD4Z95YZ;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = LuizHammerli.DataTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -605,10 +617,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M2DD4Z95YZ;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = LuizHammerli.DataTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

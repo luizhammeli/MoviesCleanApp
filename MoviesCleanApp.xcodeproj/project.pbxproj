@@ -6,13 +6,8 @@
 	objectVersion = 55;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		25364C6027C7AC6D0039496C /* MoviesCleanApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 25364C5F27C7AC6D0039496C /* MoviesCleanApp.h */; settings = {ATTRIBUTES = (Public, ); }; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		25364C5C27C7AC6D0039496C /* MoviesCleanApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MoviesCleanApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		25364C5F27C7AC6D0039496C /* MoviesCleanApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoviesCleanApp.h; sourceTree = "<group>"; };
+		25364C5C27C7AC6D0039496C /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +32,7 @@
 		25364C5D27C7AC6D0039496C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				25364C5C27C7AC6D0039496C /* MoviesCleanApp.framework */,
+				25364C5C27C7AC6D0039496C /* Domain.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -45,7 +40,6 @@
 		25364C5E27C7AC6D0039496C /* MoviesCleanApp */ = {
 			isa = PBXGroup;
 			children = (
-				25364C5F27C7AC6D0039496C /* MoviesCleanApp.h */,
 			);
 			path = MoviesCleanApp;
 			sourceTree = "<group>";
@@ -57,16 +51,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25364C6027C7AC6D0039496C /* MoviesCleanApp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		25364C5B27C7AC6D0039496C /* MoviesCleanApp */ = {
+		25364C5B27C7AC6D0039496C /* Domain */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 25364C6327C7AC6D0039496C /* Build configuration list for PBXNativeTarget "MoviesCleanApp" */;
+			buildConfigurationList = 25364C6327C7AC6D0039496C /* Build configuration list for PBXNativeTarget "Domain" */;
 			buildPhases = (
 				25364C5727C7AC6D0039496C /* Headers */,
 				25364C5827C7AC6D0039496C /* Sources */,
@@ -77,9 +70,9 @@
 			);
 			dependencies = (
 			);
-			name = MoviesCleanApp;
+			name = Domain;
 			productName = MoviesCleanApp;
-			productReference = 25364C5C27C7AC6D0039496C /* MoviesCleanApp.framework */;
+			productReference = 25364C5C27C7AC6D0039496C /* Domain.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -109,7 +102,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				25364C5B27C7AC6D0039496C /* MoviesCleanApp */,
+				25364C5B27C7AC6D0039496C /* Domain */,
 			);
 		};
 /* End PBXProject section */
@@ -324,7 +317,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		25364C6327C7AC6D0039496C /* Build configuration list for PBXNativeTarget "MoviesCleanApp" */ = {
+		25364C6327C7AC6D0039496C /* Build configuration list for PBXNativeTarget "Domain" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				25364C6427C7AC6D0039496C /* Debug */,

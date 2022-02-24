@@ -1,5 +1,5 @@
 //
-//  LoadMovies.swift
+//  MovieLoader.swift
 //  Domain
 //
 //  Created by Luiz Diniz Hammerli on 24/02/22.

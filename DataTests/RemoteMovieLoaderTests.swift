@@ -21,7 +21,7 @@ final class RemoteMovieLoader: MovieLoader {
     
     func load(completion: @escaping (MovieLoader.Result) -> Void) {
         httpClient.get(to: url) { [weak self] result in
-            guard let self = self else { return }
+            guard self != nil else { return }
             switch result {
             case .success(let data):
                 guard let movies = MovieResponseMapper.toMovie(with: data) else { return completion(.failure(.invalidData)) }
@@ -72,6 +72,41 @@ final class RemoteMovieLoaderTests: XCTestCase {
             clientSpy.complete(with: .success(anyData()))
         }
     }
+    
+    func test_load_deliversErrorOn200HttpResponseWithEmptyData() {
+        let (sut, clientSpy) = makeSut()
+        expect(sut: sut, toCompleteWith: .failure(.invalidData)) {
+            clientSpy.complete(with: .success(Data()))
+        }
+    }
+    
+    func test_load_deliversSuccessOn200HttpResponseWithCorrectData() {
+        let (sut, clientSpy) = makeSut()
+        let movies = [anyMovie(id: 10, title: "Test Movie", poster_path: "/path")]
+        let response = anyMovieResponse(movie: movies)
+        expect(sut: sut, toCompleteWith: .success(movies)) {
+            clientSpy.complete(with: .success(response.toData()))
+        }
+    }
+    
+    func test_load_deliversSuccessWithNoItemsOn200HttpResponseWithValidData() {
+        let (sut, clientSpy) = makeSut()
+        let response = anyMovieResponse(movie: [])
+        expect(sut: sut, toCompleteWith: .success([])) {
+            clientSpy.complete(with: .success(response.toData()))
+        }
+    }
+    
+    func test_load_doesNotDeliversResultAfterSutHasBeenDealocatted() {
+        let clientSPY = HttpGetClientSpy()
+        var sut: RemoteMovieLoader? = RemoteMovieLoader(url: anyURL(), httpClient: clientSPY)
+        var capturedErrors: [MovieLoader.Result] = []
+        
+        sut?.load(completion: { capturedErrors.append($0) })
+        sut = nil
+        clientSPY.complete(with: .failure(.noConnectivity))
+        XCTAssertTrue(capturedErrors.isEmpty)
+    }
 }
 
 // MARK: - Helpers
@@ -101,33 +136,5 @@ private extension RemoteMovieLoaderTests {
         })
         action()
         wait(for: [expectation], timeout: 1)
-    }
-    
-    func anyURL(stringValue: String = "https://test.com") -> URL {
-        return URL(string: stringValue)!
-    }
-    
-    func anyData(stringValue: String = "https://test.com") -> Data {
-        return Data("invalid json".description.utf8)
-    }
-}
-
-final class HttpGetClientSpy: HttpGetClient {
-    private var messages: [(url: URL, completion: (HttpGetClient.Result) -> Void)] = []
-    
-    var requestedURLS: [URL] {
-        return messages.map { $0.url }
-    }
-    
-    var messagesCount: Int {
-        messages.count
-    }
-    
-    func get(to url: URL, completion: @escaping (HttpGetClient.Result) -> Void) {
-        messages.append((url, completion))
-    }
-    
-    func complete(with expectedResult: HttpGetClient.Result, at index: Int = 0) {
-        messages[index].completion(expectedResult)
     }
 }

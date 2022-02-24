@@ -11,9 +11,9 @@
 		25364C6B27C7ADB00039496C /* MovieLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364C6A27C7ADB00039496C /* MovieLoader.swift */; };
 		25364C6E27C7ADF70039496C /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364C6D27C7ADF70039496C /* DomainError.swift */; };
 		25364C7C27C7AF200039496C /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25364C7427C7AF200039496C /* Data.framework */; };
-		25364C8127C7AF200039496C /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364C8027C7AF200039496C /* DataTests.swift */; };
 		25364C8A27C7AF650039496C /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25364C5C27C7AC6D0039496C /* Domain.framework */; };
 		25364C8B27C7AF650039496C /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25364C5C27C7AC6D0039496C /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		25364C9027C7B0190039496C /* RemoteMovieLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364C8F27C7B0190039496C /* RemoteMovieLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +54,7 @@
 		25364C6D27C7ADF70039496C /* DomainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainError.swift; sourceTree = "<group>"; };
 		25364C7427C7AF200039496C /* Data.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Data.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		25364C7B27C7AF200039496C /* DataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		25364C8027C7AF200039496C /* DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
+		25364C8F27C7B0190039496C /* RemoteMovieLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMovieLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +142,7 @@
 		25364C7527C7AF200039496C /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				25364C8F27C7B0190039496C /* RemoteMovieLoader.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -149,7 +150,6 @@
 		25364C7F27C7AF200039496C /* DataTests */ = {
 			isa = PBXGroup;
 			children = (
-				25364C8027C7AF200039496C /* DataTests.swift */,
 			);
 			path = DataTests;
 			sourceTree = "<group>";
@@ -253,6 +253,7 @@
 					};
 					25364C7327C7AF200039496C = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 					25364C7A27C7AF200039496C = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -318,6 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25364C9027C7B0190039496C /* RemoteMovieLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +327,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25364C8127C7AF200039496C /* DataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +529,7 @@
 		25364C8427C7AF200039496C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -549,6 +551,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -556,6 +559,7 @@
 		25364C8527C7AF200039496C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -584,6 +588,7 @@
 		25364C8727C7AF200039496C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M2DD4Z95YZ;
@@ -599,6 +604,7 @@
 		25364C8827C7AF200039496C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M2DD4Z95YZ;

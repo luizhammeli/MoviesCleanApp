@@ -10,11 +10,16 @@ import Foundation
 public struct Movie: Codable, Equatable {
     let id: Int
     let title: String
-    let poster_path: String?
+    let posterPath: String?
     
-    public init(id: Int, title: String, poster_path: String?) {
+    public init(id: Int, title: String, posterPath: String?) {
         self.id = id
         self.title = title
-        self.poster_path = poster_path        
+        self.posterPath = posterPath
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id, title
+        case posterPath = "poster_path"
     }
 }

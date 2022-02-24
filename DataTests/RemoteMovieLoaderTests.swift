@@ -52,12 +52,12 @@ final class RemoteMovieLoaderTests: XCTestCase {
         XCTAssertEqual(clientSpy.requestedURLS, [url, url])
     }
     
-//    func test_load_deliversErrorOnClientError() {
-//        let (sut, clientSpy) = makeSut()
-//        expect(sut: sut, toCompleteWith: failure(.connectivity)) {
-//            clientSpy.complete(with: NSError(domain: "", code: 0, userInfo: nil))
-//        }
-//    }
+    func test_load_deliversErrorOnClientError() {
+        let (sut, clientSpy) = makeSut()
+        expect(sut: sut, toCompleteWith: failure(.connectivity)) {
+            clientSpy.complete(with: NSError(domain: "", code: 0, userInfo: nil))
+        }
+    }
 }
 
 // MARK: - Helpers
@@ -70,6 +70,27 @@ private extension RemoteMovieLoaderTests {
         let clientSPY = HttpGetClientSpy()
         let sut = RemoteMovieLoader(url: anyURL(), httpClient: clientSPY)
         return (sut, clientSPY)
+    }
+    
+    private func expect(sut: RemoteMovieLoader,
+                        toCompleteWith expectedResult: MovieLoader.Result,
+                        when action: () -> Void,
+                        file: StaticString = #filePath,
+                        line: UInt = #line) {
+        let expectation = expectation(description: "Waiting for request")
+        sut.load(completion: { receivedResult in
+            switch (receivedResult, expectedResult) {
+            case (.success(let receivedItems), .success(let expectedItems)):
+                XCTAssertEqual(receivedItems, expectedItems, file: file, line: line)
+            case (.failure(let receivedError), .failure(let expectedError)):
+                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+            default:
+                XCTFail("Assert error expect \(expectedResult) receive \(receivedResult) instead", file: file, line: line)
+            }
+            expectation.fulfill()
+        })
+        action()
+        wait(for: [expectation], timeout: 1)
     }
 }
 
@@ -87,4 +108,6 @@ final class HttpGetClientSpy: HttpGetClient {
     func get(to url: URL, completion: @escaping (Result<Data?, HttpError>) -> Void) {
         messages.append((url, completion))
     }
+    
+    complete(with expectedResult: )
 }

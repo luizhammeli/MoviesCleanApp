@@ -8,6 +8,6 @@
 import Foundation
 import Domain
 
-struct MovieResponse:Codable {
-    let results: [Movie]?
+struct MovieResponse: Codable, Equatable {
+    let results: [Movie]
 }

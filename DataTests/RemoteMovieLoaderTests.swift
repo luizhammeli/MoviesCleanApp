@@ -20,8 +20,15 @@ final class RemoteMovieLoader: MovieLoader {
     }
     
     func load(completion: @escaping (MovieLoader.Result) -> Void) {
-        httpClient.get(to: url) { result in
-            completion(.failure(.unexpected))
+        httpClient.get(to: url) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let data):
+                guard let movies = MovieResponseMapper.toMovie(with: data) else { return completion(.failure(.invalidData)) }
+                completion(.success(movies))
+            case .failure:
+                completion(.failure(.unexpected))
+            }
         }
     }
 }
@@ -58,14 +65,17 @@ final class RemoteMovieLoaderTests: XCTestCase {
             clientSpy.complete(with: .failure(.unauthorized))
         }
     }
+    
+    func test_load_deliversErrorOn200HttpResponseWithInvalidData() {
+        let (sut, clientSpy) = makeSut()
+        expect(sut: sut, toCompleteWith: .failure(.invalidData)) {
+            clientSpy.complete(with: .success(anyData()))
+        }
+    }
 }
 
 // MARK: - Helpers
 private extension RemoteMovieLoaderTests {
-    func anyURL(stringValue: String = "https://test.com") -> URL {
-        return URL(string: stringValue)!
-    }
-    
     func makeSut(url: URL = URL(string: "https://test.com")!) -> (RemoteMovieLoader, HttpGetClientSpy) {
         let clientSPY = HttpGetClientSpy()
         let sut = RemoteMovieLoader(url: anyURL(), httpClient: clientSPY)
@@ -91,6 +101,14 @@ private extension RemoteMovieLoaderTests {
         })
         action()
         wait(for: [expectation], timeout: 1)
+    }
+    
+    func anyURL(stringValue: String = "https://test.com") -> URL {
+        return URL(string: stringValue)!
+    }
+    
+    func anyData(stringValue: String = "https://test.com") -> Data {
+        return Data("invalid json".description.utf8)
     }
 }
 

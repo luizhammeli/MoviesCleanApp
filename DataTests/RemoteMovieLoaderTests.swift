@@ -5,11 +5,9 @@
 //  Created by Luiz Diniz Hammerli on 24/02/22.
 //
 
-import Foundation
 import XCTest
 import Domain
 import Data
-
 
 final class RemoteMovieLoaderTests: XCTestCase {
     func test_init_doesNotRequestDataFromURl() {

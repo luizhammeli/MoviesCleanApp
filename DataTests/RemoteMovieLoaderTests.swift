@@ -32,20 +32,45 @@ final class RemoteMovieLoaderTests: XCTestCase {
         
         XCTAssertEqual(clientSpy.messagesCount, 0)
     }
+    
+    func test_load_requestsDataFromURl() {
+        let url = anyURL()
+        let (sut, clientSpy) = makeSut(url: url)
+        
+        sut.load(completion: { _ in })
+        
+        XCTAssertEqual(clientSpy.requestedURLS, [url])
+    }
+    
+    func test_loadTwice_requestsDataFromURlTwice() {
+        let url = anyURL()
+        let (sut, clientSpy) = makeSut(url: url)
+        
+        sut.load(completion: { _ in })
+        sut.load(completion: { _ in })
+        
+        XCTAssertEqual(clientSpy.requestedURLS, [url, url])
+    }
+    
+//    func test_load_deliversErrorOnClientError() {
+//        let (sut, clientSpy) = makeSut()
+//        expect(sut: sut, toCompleteWith: failure(.connectivity)) {
+//            clientSpy.complete(with: NSError(domain: "", code: 0, userInfo: nil))
+//        }
+//    }
 }
 
 // MARK: - Helpers
 private extension RemoteMovieLoaderTests {
-    func makeSut() -> (RemoteMovieLoader, HttpGetClientSpy) {
-        let clientSPY = HttpGetClientSpy()
-        let sut = RemoteMovieLoader(url: anyURL(), httpClient: clientSPY)
-        return (sut, clientSPY)
-    }
-    
     func anyURL(stringValue: String = "https://test.com") -> URL {
         return URL(string: stringValue)!
     }
     
+    func makeSut(url: URL = URL(string: "https://test.com")!) -> (RemoteMovieLoader, HttpGetClientSpy) {
+        let clientSPY = HttpGetClientSpy()
+        let sut = RemoteMovieLoader(url: anyURL(), httpClient: clientSPY)
+        return (sut, clientSPY)
+    }
 }
 
 final class HttpGetClientSpy: HttpGetClient {

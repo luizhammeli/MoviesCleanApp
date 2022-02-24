@@ -26,7 +26,7 @@
 		25364CC427C7F1130039496C /* URLSessionHttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CC327C7F1130039496C /* URLSessionHttpClient.swift */; };
 		25364CC527C7F2590039496C /* TestFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CA427C7EC120039496C /* TestFactories.swift */; };
 		25364CC827C7F6890039496C /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CC727C7F6890039496C /* URLProtocolStub.swift */; };
-		25364CCA27C805890039496C /* HttpGetClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CC927C805890039496C /* HttpGetClientTests.swift */; };
+		25364CCA27C805890039496C /* URLSessionHttpGetClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CC927C805890039496C /* URLSessionHttpGetClient.swift */; };
 		25364CCE27C8349B0039496C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CCD27C8349B0039496C /* HTTPMethod.swift */; };
 		25364CCF27C834B40039496C /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25364C7427C7AF200039496C /* Data.framework */; };
 		25364CD027C834B40039496C /* Data.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25364C7427C7AF200039496C /* Data.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -108,7 +108,7 @@
 		25364CC027C7F0210039496C /* URLSessionHttpClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHttpClientTests.swift; sourceTree = "<group>"; };
 		25364CC327C7F1130039496C /* URLSessionHttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHttpClient.swift; sourceTree = "<group>"; };
 		25364CC727C7F6890039496C /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
-		25364CC927C805890039496C /* HttpGetClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpGetClientTests.swift; sourceTree = "<group>"; };
+		25364CC927C805890039496C /* URLSessionHttpGetClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHttpGetClient.swift; sourceTree = "<group>"; };
 		25364CCD27C8349B0039496C /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -296,7 +296,7 @@
 			children = (
 				25364CC027C7F0210039496C /* URLSessionHttpClientTests.swift */,
 				25364CC727C7F6890039496C /* URLProtocolStub.swift */,
-				25364CC927C805890039496C /* HttpGetClientTests.swift */,
+				25364CC927C805890039496C /* URLSessionHttpGetClient.swift */,
 			);
 			path = Http;
 			sourceTree = "<group>";
@@ -578,7 +578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25364CC527C7F2590039496C /* TestFactories.swift in Sources */,
-				25364CCA27C805890039496C /* HttpGetClientTests.swift in Sources */,
+				25364CCA27C805890039496C /* URLSessionHttpGetClient.swift in Sources */,
 				25364CC827C7F6890039496C /* URLProtocolStub.swift in Sources */,
 				25364CC127C7F0210039496C /* URLSessionHttpClientTests.swift in Sources */,
 			);

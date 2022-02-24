@@ -10,6 +10,10 @@ import Domain
 
 public struct MovieResponse: Codable, Equatable {
     public let results: [Movie]
+        
+    public init(results: [Movie]) {
+        self.results = results
+    }
 }
 
 public final class MovieResponseMapper {

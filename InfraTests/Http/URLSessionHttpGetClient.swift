@@ -5,7 +5,6 @@
 //  Created by Luiz Diniz Hammerli on 24/02/22.
 //
 
-import Foundation
 import XCTest
 import Data
 import Infra
@@ -102,17 +101,5 @@ extension URLSessionHttpGetClientTests {
         default:
             XCTFail("Expected \(expectedResult) result got \(String(describing: receivedResult)) instead")
         }
-    }
-    
-    private func anyURLResponse() -> URLResponse {
-        return URLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 1, textEncodingName: "")
-    }
-
-    private func anyHTTPURLResponse(statusCode: Int = 0) -> HTTPURLResponse {
-        return HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: "", headerFields: nil)!
-    }
-    
-    private func anyNSError() -> NSError {
-        return NSError(domain: "test", code: 0, userInfo: nil)
     }
 }

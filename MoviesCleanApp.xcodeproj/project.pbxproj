@@ -29,6 +29,7 @@
 		25364CCE27C8349B0039496C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CCD27C8349B0039496C /* HTTPMethod.swift */; };
 		25364CCF27C834B40039496C /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25364C7427C7AF200039496C /* Data.framework */; };
 		25364CD027C834B40039496C /* Data.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25364C7427C7AF200039496C /* Data.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3804F5B527C8569A009A6CE6 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804F5B427C8569A009A6CE6 /* TestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		25364CC727C7F6890039496C /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		25364CC927C805890039496C /* URLSessionHttpGetClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHttpGetClient.swift; sourceTree = "<group>"; };
 		25364CCD27C8349B0039496C /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		3804F5B427C8569A009A6CE6 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +294,7 @@
 		25364CC227C7F03A0039496C /* Http */ = {
 			isa = PBXGroup;
 			children = (
+				3804F5B327C8568C009A6CE6 /* Helpers */,
 				25364CC727C7F6890039496C /* URLProtocolStub.swift */,
 				25364CC927C805890039496C /* URLSessionHttpGetClient.swift */,
 			);
@@ -313,6 +316,14 @@
 				25364CCD27C8349B0039496C /* HTTPMethod.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		3804F5B327C8568C009A6CE6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3804F5B427C8569A009A6CE6 /* TestHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -577,6 +588,7 @@
 				25364CC527C7F2590039496C /* TestFactories.swift in Sources */,
 				25364CCA27C805890039496C /* URLSessionHttpGetClient.swift in Sources */,
 				25364CC827C7F6890039496C /* URLProtocolStub.swift in Sources */,
+				3804F5B527C8569A009A6CE6 /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

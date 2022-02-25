@@ -31,6 +31,8 @@
 		25364CD027C834B40039496C /* Data.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25364C7427C7AF200039496C /* Data.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		25364CE127C918A60039496C /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25364CD927C918A60039496C /* Presentation.framework */; };
 		25364CE627C918A60039496C /* MovieViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CE527C918A60039496C /* MovieViewPresenterTests.swift */; };
+		25364CEE27C925160039496C /* XCTestCase+Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804F5B727C85717009A6CE6 /* XCTestCase+Memory.swift */; };
+		25364CEF27C943ED0039496C /* TestFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CA427C7EC120039496C /* TestFactories.swift */; };
 		3804F5B527C8569A009A6CE6 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804F5B427C8569A009A6CE6 /* TestHelpers.swift */; };
 		3804F5B827C85717009A6CE6 /* XCTestCase+Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804F5B727C85717009A6CE6 /* XCTestCase+Memory.swift */; };
 		3804F5B927C85DC0009A6CE6 /* XCTestCase+Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804F5B727C85717009A6CE6 /* XCTestCase+Memory.swift */; };
@@ -778,7 +780,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25364CEF27C943ED0039496C /* TestFactories.swift in Sources */,
 				25364CE627C918A60039496C /* MovieViewPresenterTests.swift in Sources */,
+				25364CEE27C925160039496C /* XCTestCase+Memory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,6 +33,14 @@
 		25364CE627C918A60039496C /* MovieViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CE527C918A60039496C /* MovieViewPresenterTests.swift */; };
 		25364CEE27C925160039496C /* XCTestCase+Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804F5B727C85717009A6CE6 /* XCTestCase+Memory.swift */; };
 		25364CEF27C943ED0039496C /* TestFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CA427C7EC120039496C /* TestFactories.swift */; };
+		256F551A27C9575B00E6A03A /* MovieViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F551927C9575B00E6A03A /* MovieViewPresenter.swift */; };
+		256F551D27C96CB200E6A03A /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F551C27C96CB200E6A03A /* MovieView.swift */; };
+		256F551F27C96CC900E6A03A /* MovieAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F551E27C96CC900E6A03A /* MovieAlertView.swift */; };
+		256F552127C96CDE00E6A03A /* MovieLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F552027C96CDE00E6A03A /* MovieLoadingView.swift */; };
+		256F552327C96D0900E6A03A /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F552227C96D0900E6A03A /* MovieViewModel.swift */; };
+		256F552527C96D4000E6A03A /* MovieAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F552427C96D4000E6A03A /* MovieAlertViewModel.swift */; };
+		256F552727C96D5200E6A03A /* MovieLoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F552627C96D5200E6A03A /* MovieLoadingViewModel.swift */; };
+		256F552A27C96D9400E6A03A /* MovieViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F552927C96D9400E6A03A /* MovieViewSpy.swift */; };
 		3804F5B527C8569A009A6CE6 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804F5B427C8569A009A6CE6 /* TestHelpers.swift */; };
 		3804F5B827C85717009A6CE6 /* XCTestCase+Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804F5B727C85717009A6CE6 /* XCTestCase+Memory.swift */; };
 		3804F5B927C85DC0009A6CE6 /* XCTestCase+Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804F5B727C85717009A6CE6 /* XCTestCase+Memory.swift */; };
@@ -134,6 +142,14 @@
 		25364CD927C918A60039496C /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		25364CE027C918A60039496C /* PresentationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresentationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25364CE527C918A60039496C /* MovieViewPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewPresenterTests.swift; sourceTree = "<group>"; };
+		256F551927C9575B00E6A03A /* MovieViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewPresenter.swift; sourceTree = "<group>"; };
+		256F551C27C96CB200E6A03A /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
+		256F551E27C96CC900E6A03A /* MovieAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAlertView.swift; sourceTree = "<group>"; };
+		256F552027C96CDE00E6A03A /* MovieLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLoadingView.swift; sourceTree = "<group>"; };
+		256F552227C96D0900E6A03A /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
+		256F552427C96D4000E6A03A /* MovieAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAlertViewModel.swift; sourceTree = "<group>"; };
+		256F552627C96D5200E6A03A /* MovieLoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLoadingViewModel.swift; sourceTree = "<group>"; };
+		256F552927C96D9400E6A03A /* MovieViewSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewSpy.swift; sourceTree = "<group>"; };
 		3804F5B427C8569A009A6CE6 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		3804F5B727C85717009A6CE6 /* XCTestCase+Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Memory.swift"; sourceTree = "<group>"; };
 		3804F5BE27C86532009A6CE6 /* MoviesCleanAppEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesCleanAppEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -379,6 +395,8 @@
 		25364CDA27C918A60039496C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				256F551B27C96C9800E6A03A /* Views */,
+				256F551927C9575B00E6A03A /* MovieViewPresenter.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -386,9 +404,31 @@
 		25364CE427C918A60039496C /* PresentationTests */ = {
 			isa = PBXGroup;
 			children = (
+				256F552827C96D7D00E6A03A /* Views */,
 				25364CE527C918A60039496C /* MovieViewPresenterTests.swift */,
 			);
 			path = PresentationTests;
+			sourceTree = "<group>";
+		};
+		256F551B27C96C9800E6A03A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				256F551C27C96CB200E6A03A /* MovieView.swift */,
+				256F551E27C96CC900E6A03A /* MovieAlertView.swift */,
+				256F552027C96CDE00E6A03A /* MovieLoadingView.swift */,
+				256F552227C96D0900E6A03A /* MovieViewModel.swift */,
+				256F552427C96D4000E6A03A /* MovieAlertViewModel.swift */,
+				256F552627C96D5200E6A03A /* MovieLoadingViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		256F552827C96D7D00E6A03A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				256F552927C96D9400E6A03A /* MovieViewSpy.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		3804F5B327C8568C009A6CE6 /* Helpers */ = {
@@ -621,6 +661,7 @@
 					};
 					25364CD827C918A60039496C = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 					25364CDF27C918A60039496C = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -773,6 +814,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				256F551A27C9575B00E6A03A /* MovieViewPresenter.swift in Sources */,
+				256F552727C96D5200E6A03A /* MovieLoadingViewModel.swift in Sources */,
+				256F552327C96D0900E6A03A /* MovieViewModel.swift in Sources */,
+				256F551D27C96CB200E6A03A /* MovieView.swift in Sources */,
+				256F552127C96CDE00E6A03A /* MovieLoadingView.swift in Sources */,
+				256F552527C96D4000E6A03A /* MovieAlertViewModel.swift in Sources */,
+				256F551F27C96CC900E6A03A /* MovieAlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,6 +828,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				256F552A27C96D9400E6A03A /* MovieViewSpy.swift in Sources */,
 				25364CEF27C943ED0039496C /* TestFactories.swift in Sources */,
 				25364CE627C918A60039496C /* MovieViewPresenterTests.swift in Sources */,
 				25364CEE27C925160039496C /* XCTestCase+Memory.swift in Sources */,
@@ -1221,6 +1270,7 @@
 		25364CE827C918A60039496C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1242,6 +1292,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1249,6 +1300,7 @@
 		25364CE927C918A60039496C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1277,6 +1329,7 @@
 		25364CEA27C918A60039496C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M2DD4Z95YZ;
@@ -1292,6 +1345,7 @@
 		25364CEB27C918A60039496C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M2DD4Z95YZ;

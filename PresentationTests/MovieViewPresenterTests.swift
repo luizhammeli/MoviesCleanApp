@@ -8,70 +8,7 @@
 import XCTest
 import Data
 import Domain
-//import Presentation
-
-public struct MovieLoadingViewModel {
-    public let isLoading: Bool
-}
-
-public struct MovieAlertViewModel: Equatable, Hashable {
-    public let title: String
-    public let message: String
-}
-
-public struct MovieViewModel: Equatable, Hashable {
-    public let title: String
-    public let imageURL: URL
-}
-
-public protocol MovieLoadingView {
-    func display(viewModel: MovieLoadingViewModel)
-}
-
-public protocol MovieAlertView {
-    func display(viewModel: MovieAlertViewModel)
-}
-
-public protocol MovieView {
-    func display(movies: [MovieViewModel])
-}
-
-final class MovieViewPresenter {
-    private let imageBaseURL: String
-    private let loader: MovieLoader
-    
-    private let loadingView: MovieLoadingView
-    private let alertView: MovieAlertView
-    private let movieView: MovieView
-    
-    public init(imageBaseURL: String, loader: MovieLoader, loadingView: MovieLoadingView, movieView: MovieView, alertView: MovieAlertView) {
-        self.loader = loader
-        self.loadingView = loadingView
-        self.movieView = movieView
-        self.imageBaseURL = imageBaseURL
-        self.alertView = alertView
-    }
-    
-    func loadMovies() {
-        loadingView.display(viewModel: .init(isLoading: true))
-        loader.load { [weak self] result in
-            guard let self = self else { return }
-            self.loadingView.display(viewModel: .init(isLoading: false))
-            if let movies = try? result.get() {
-                self.movieView.display(movies: self.toMoviesViewModel(movies: movies))
-            } else {
-                self.alertView.display(viewModel: .init(title: "Erro", message: "Ocorreu um erro inesperado."))
-            }
-        }
-    }
-    
-    private func toMoviesViewModel(movies: [Movie]) -> [MovieViewModel] {
-        movies.compactMap { movie in
-            guard let url = URL(string: "\(imageBaseURL + movie.posterPath)") else { return nil }
-            return .init(title: movie.title, imageURL: url)
-        }
-    }
-}
+import Presentation
 
 final class MovieViewPresenterTests: XCTestCase {
     func test_init_shouldNotLoadMovies() {
@@ -93,7 +30,9 @@ final class MovieViewPresenterTests: XCTestCase {
         
         sut.loadMovies()
         loader.complete(with: .failure(.unexpected), at: 0)
-        XCTAssertEqual(viewSpy.messages, [.display(isLoading: true), .display(isLoading: false), .display(alert: .init(title: "Erro", message: "Ocorreu um erro inesperado."))])
+        XCTAssertEqual(viewSpy.messages, [.display(isLoading: true),
+                                          .display(isLoading: false),
+                                          .display(alert: MovieAlertViewModel(title: "Erro", message: "Ocorreu um erro inesperado."))])
     }
     
     func test_didFinishLoadingMoviesWithSuccess_shouldSendIsLoadingViewMessage() {
@@ -137,28 +76,5 @@ final class RemoteMovieLoaderSpy: MovieLoader {
     
     func complete(with result: MovieLoader.Result, at index: Int) {
         completions[index](result)
-    }
-    
-}
-
-final class MovieViewSpy: MovieLoadingView, MovieView, MovieAlertView {
-    enum Messages: Equatable, Hashable {
-        case display(isLoading: Bool)
-        case display(alert: MovieAlertViewModel)
-        case display(movies: [MovieViewModel])
-    }
-    
-    var messages: [Messages] = []
-    
-    func display(viewModel: MovieLoadingViewModel) {
-        messages.append(.display(isLoading: viewModel.isLoading))
-    }
-    
-    func display(movies: [MovieViewModel]) {
-        messages.append(.display(movies: movies))
-    }
-    
-    func display(viewModel: MovieAlertViewModel) {
-        messages.append(.display(alert: viewModel))
     }
 }

@@ -52,6 +52,13 @@
             BlueprintName = "Infra"
             ReferencedContainer = "container:MoviesCleanApp.xcodeproj">
          </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "25364CD827C918A60039496C"
+            BuildableName = "Presentation.framework"
+            BlueprintName = "Presentation"
+            ReferencedContainer = "container:MoviesCleanApp.xcodeproj">
+         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference
@@ -84,6 +91,17 @@
                BlueprintIdentifier = "3804F5BD27C86532009A6CE6"
                BuildableName = "MoviesCleanAppEndToEndTests.xctest"
                BlueprintName = "MoviesCleanAppEndToEndTests"
+               ReferencedContainer = "container:MoviesCleanApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "25364CDF27C918A60039496C"
+               BuildableName = "PresentationTests.xctest"
+               BlueprintName = "PresentationTests"
                ReferencedContainer = "container:MoviesCleanApp.xcodeproj">
             </BuildableReference>
          </TestableReference>

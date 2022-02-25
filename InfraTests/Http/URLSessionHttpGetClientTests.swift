@@ -56,6 +56,10 @@ final class URLSessionHttpGetClientTests: XCTestCase {
         let data = Data()
         expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil))
     }
+    
+    func test_fetch_shouldSucceedWith204Status() {
+        expect(.success(nil), when: .init(data: nil, response: anyHTTPURLResponse(statusCode: 204), error: nil))
+    }
 }
 
 extension URLSessionHttpGetClientTests {
@@ -71,11 +75,11 @@ extension URLSessionHttpGetClientTests {
         let sut = makeSUT()
         var receivedRequest: URLRequest?
 
-        let expectation = expectation(description: "Waiting for request")
+        let exp = expectation(description: "Waiting for request")
         URLProtocolStub.observeRequest { receivedRequest = $0 }
-        sut.get(url) { _ in expectation.fulfill() }
+        sut.get(url) { _ in exp.fulfill() }
 
-        wait(for: [expectation], timeout: 1)
+        wait(for: [exp], timeout: 1)
 
         XCTAssertTrue(receivedRequest!.url!.absoluteString.contains(url.absoluteString), file: file, line: line)
         XCTAssertEqual(receivedRequest?.httpMethod, method.rawValue, file: file, line: line)

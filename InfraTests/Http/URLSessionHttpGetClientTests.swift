@@ -1,5 +1,5 @@
 //
-//  HttpGetClientTests.swift
+//  URLSessionHttpGetClientTests.swift
 //  InfraTests
 //
 //  Created by Luiz Diniz Hammerli on 24/02/22.
@@ -59,10 +59,11 @@ final class URLSessionHttpGetClientTests: XCTestCase {
 }
 
 extension URLSessionHttpGetClientTests {
-    func makeSUT() -> URLSessionHttpGetClient {
+    func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> URLSessionHttpGetClient {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [URLProtocolStub.self]
         let sut = URLSessionHttpGetClient(urlSession: URLSession(configuration: configuration))
+        checkMemoryLeak(for: sut)
         return sut
     }
     

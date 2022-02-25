@@ -10,7 +10,7 @@ import XCTest
 import Data
 import Infra
 
-final class URLSessionHttpGetClient: XCTestCase {
+final class URLSessionHttpGetClientTests: XCTestCase {
     override class func setUp() {
         URLProtocolStub.startIntercepting()
     }
@@ -59,7 +59,7 @@ final class URLSessionHttpGetClient: XCTestCase {
     }
 }
 
-extension URLSessionHttpGetClient {
+extension URLSessionHttpGetClientTests {
     func makeSUT() -> URLSessionHttpGetClient {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [URLProtocolStub.self]

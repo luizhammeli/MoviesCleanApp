@@ -45,6 +45,10 @@ final class MovieViewPresenterTests: XCTestCase {
         loader.complete(with: .success([data.model]), at: 0)
         XCTAssertEqual(viewSpy.messages, [.display(isLoading: true), .display(isLoading: false), .display(movies: [data.movieViewModel])])
     }
+    
+    func test_title_shouldReturnCorrectTitle() {
+        XCTAssertEqual(MovieViewPresenter.title, getLocalizedString())
+    }
 }
 
 // MARK: Helpers
@@ -55,6 +59,7 @@ private extension MovieViewPresenterTests {
                  movieView: MovieView = MovieViewSpy()) -> (MovieViewPresenter, RemoteMovieLoaderSpy) {
         let loaderSpy = RemoteMovieLoaderSpy()
         let sut = MovieViewPresenter(imageBaseURL: baseURL, loader: loaderSpy, loadingView: loadingView, movieView: movieView, alertView: alertView)
+        checkMemoryLeak(for: loaderSpy)
         checkMemoryLeak(for: sut)
         return (sut, loaderSpy)
     }
@@ -64,6 +69,12 @@ private extension MovieViewPresenterTests {
         let url = URL(string: "\(baseURL + movie.posterPath)")!
         let movieViewModel = MovieViewModel(title: movie.title, imageURL: url)
         return (movie, movieViewModel)
+    }
+    
+    func getLocalizedString(for key: String = "MOVIE_VIEW_TITLE") -> String {
+        return NSLocalizedString(key,
+                                 tableName: "Movie",
+                                 bundle: Bundle(for: MovieViewPresenter.self), comment: "")
     }
 }
 

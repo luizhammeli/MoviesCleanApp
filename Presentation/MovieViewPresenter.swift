@@ -24,15 +24,21 @@ public final class MovieViewPresenter {
         self.alertView = alertView
     }
     
+    public static var title: String {
+        return NSLocalizedString("MOVIE_VIEW_TITLE",
+                                 tableName: "Movie",
+                                 bundle: Bundle(for: MovieViewPresenter.self), comment: "")
+    }
+    
     public func loadMovies() {
         loadingView.display(viewModel: .init(isLoading: true))
         loader.load { [weak self] result in
             guard let self = self else { return }
-            self.loadingView.display(viewModel: .init(isLoading: false))
-            
-            if let movies = try? result.get() {
+            self.loadingView.display(viewModel: .init(isLoading: false))            
+            switch result {
+            case .success(let movies):
                 self.movieView.display(movies: self.toMoviesViewModel(movies: movies))
-            } else {
+            case .failure:
                 self.alertView.display(viewModel: .init(title: "Erro", message: "Ocorreu um erro inesperado."))
             }
         }

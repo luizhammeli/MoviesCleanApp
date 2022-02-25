@@ -30,7 +30,7 @@
 		25364CCF27C834B40039496C /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25364C7427C7AF200039496C /* Data.framework */; };
 		25364CD027C834B40039496C /* Data.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25364C7427C7AF200039496C /* Data.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		25364CE127C918A60039496C /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25364CD927C918A60039496C /* Presentation.framework */; };
-		25364CE627C918A60039496C /* PresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CE527C918A60039496C /* PresentationTests.swift */; };
+		25364CE627C918A60039496C /* MovieViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25364CE527C918A60039496C /* MovieViewPresenterTests.swift */; };
 		3804F5B527C8569A009A6CE6 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804F5B427C8569A009A6CE6 /* TestHelpers.swift */; };
 		3804F5B827C85717009A6CE6 /* XCTestCase+Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804F5B727C85717009A6CE6 /* XCTestCase+Memory.swift */; };
 		3804F5B927C85DC0009A6CE6 /* XCTestCase+Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804F5B727C85717009A6CE6 /* XCTestCase+Memory.swift */; };
@@ -131,7 +131,7 @@
 		25364CCD27C8349B0039496C /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		25364CD927C918A60039496C /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		25364CE027C918A60039496C /* PresentationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresentationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		25364CE527C918A60039496C /* PresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationTests.swift; sourceTree = "<group>"; };
+		25364CE527C918A60039496C /* MovieViewPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewPresenterTests.swift; sourceTree = "<group>"; };
 		3804F5B427C8569A009A6CE6 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		3804F5B727C85717009A6CE6 /* XCTestCase+Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Memory.swift"; sourceTree = "<group>"; };
 		3804F5BE27C86532009A6CE6 /* MoviesCleanAppEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesCleanAppEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -384,7 +384,7 @@
 		25364CE427C918A60039496C /* PresentationTests */ = {
 			isa = PBXGroup;
 			children = (
-				25364CE527C918A60039496C /* PresentationTests.swift */,
+				25364CE527C918A60039496C /* MovieViewPresenterTests.swift */,
 			);
 			path = PresentationTests;
 			sourceTree = "<group>";
@@ -778,7 +778,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25364CE627C918A60039496C /* PresentationTests.swift in Sources */,
+				25364CE627C918A60039496C /* MovieViewPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

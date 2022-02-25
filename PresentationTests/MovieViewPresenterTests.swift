@@ -14,6 +14,11 @@ public struct MovieLoadingViewModel {
     public let isLoading: Bool
 }
 
+public struct MovieAlertViewModel: Equatable, Hashable {
+    public let title: String
+    public let message: String
+}
+
 public struct MovieViewModel: Equatable, Hashable {
     public let title: String
     public let imageURL: URL
@@ -23,22 +28,28 @@ public protocol MovieLoadingView {
     func display(viewModel: MovieLoadingViewModel)
 }
 
+public protocol MovieAlertView {
+    func display(viewModel: MovieAlertViewModel)
+}
+
 public protocol MovieView {
     func display(movies: [MovieViewModel])
 }
 
 final class MovieViewPresenter {
     private let imageBaseURL: String
-    
     private let loader: MovieLoader
+    
     private let loadingView: MovieLoadingView
+    private let alertView: MovieAlertView
     private let movieView: MovieView
     
-    public init(imageBaseURL: String, loader: MovieLoader, loadingView: MovieLoadingView, movieView: MovieView) {
+    public init(imageBaseURL: String, loader: MovieLoader, loadingView: MovieLoadingView, movieView: MovieView, alertView: MovieAlertView) {
         self.loader = loader
         self.loadingView = loadingView
         self.movieView = movieView
         self.imageBaseURL = imageBaseURL
+        self.alertView = alertView
     }
     
     func loadMovies() {
@@ -48,6 +59,8 @@ final class MovieViewPresenter {
             self.loadingView.display(viewModel: .init(isLoading: false))
             if let movies = try? result.get() {
                 self.movieView.display(movies: self.toMoviesViewModel(movies: movies))
+            } else {
+                self.alertView.display(viewModel: .init(title: "Erro", message: "Ocorreu um erro inesperado."))
             }
         }
     }
@@ -76,11 +89,11 @@ final class MovieViewPresenterTests: XCTestCase {
     
     func test_didFinishLoadingMoviesWithError_shouldSendIsLoadingViewMessage() {
         let viewSpy = MovieViewSpy()
-        let (sut, loader) = makeSUT(loadingView: viewSpy)
+        let (sut, loader) = makeSUT(loadingView: viewSpy, alertView: viewSpy)
         
         sut.loadMovies()
         loader.complete(with: .failure(.unexpected), at: 0)
-        XCTAssertEqual(viewSpy.messages, [.display(isLoading: true), .display(isLoading: false)])
+        XCTAssertEqual(viewSpy.messages, [.display(isLoading: true), .display(isLoading: false), .display(alert: .init(title: "Erro", message: "Ocorreu um erro inesperado."))])
     }
     
     func test_didFinishLoadingMoviesWithSuccess_shouldSendIsLoadingViewMessage() {
@@ -99,9 +112,10 @@ final class MovieViewPresenterTests: XCTestCase {
 private extension MovieViewPresenterTests {
     func makeSUT(baseURL: String = "test",
                  loadingView: MovieLoadingView = MovieViewSpy(),
+                 alertView: MovieAlertView = MovieViewSpy(),
                  movieView: MovieView = MovieViewSpy()) -> (MovieViewPresenter, RemoteMovieLoaderSpy) {
         let loaderSpy = RemoteMovieLoaderSpy()
-        let sut = MovieViewPresenter(imageBaseURL: baseURL, loader: loaderSpy, loadingView: loadingView, movieView: movieView)
+        let sut = MovieViewPresenter(imageBaseURL: baseURL, loader: loaderSpy, loadingView: loadingView, movieView: movieView, alertView: alertView)
         checkMemoryLeak(for: sut)
         return (sut, loaderSpy)
     }
@@ -127,9 +141,10 @@ final class RemoteMovieLoaderSpy: MovieLoader {
     
 }
 
-final class MovieViewSpy: MovieLoadingView, MovieView {
+final class MovieViewSpy: MovieLoadingView, MovieView, MovieAlertView {
     enum Messages: Equatable, Hashable {
         case display(isLoading: Bool)
+        case display(alert: MovieAlertViewModel)
         case display(movies: [MovieViewModel])
     }
     
@@ -141,5 +156,9 @@ final class MovieViewSpy: MovieLoadingView, MovieView {
     
     func display(movies: [MovieViewModel]) {
         messages.append(.display(movies: movies))
+    }
+    
+    func display(viewModel: MovieAlertViewModel) {
+        messages.append(.display(alert: viewModel))
     }
 }

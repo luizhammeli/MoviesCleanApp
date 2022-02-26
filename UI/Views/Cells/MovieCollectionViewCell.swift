@@ -2,7 +2,7 @@
 //  MovieCollectionViewCell.swift
 //  UI
 //
-//  Created by Luiz Hammerli on 25/02/22.
+//  Created by Luiz Hammerli on 26/02/22.
 //
 
 import UIKit
@@ -50,7 +50,7 @@ final class MovieCollectionViewCell: UICollectionViewCell {
 //                self.activityIndicator.stopAnimating()
 //            }
 //        }.resume()
-//        
+//
 //        DispatchQueue.global().async {
 //            guard let imageData = try? Data(contentsOf: url) else {return}
 //

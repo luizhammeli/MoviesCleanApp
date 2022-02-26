@@ -2,7 +2,7 @@
 //  UIView+Constraints.swift
 //  UI
 //
-//  Created by Luiz Hammerli on 25/02/22.
+//  Created by Luiz Hammerli on 26/02/22.
 //
 
 import UIKit
@@ -209,3 +209,4 @@ extension UIView {
         return anchoredSizeConstraints
     }
 }
+

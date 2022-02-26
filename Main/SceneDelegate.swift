@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -19,9 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         window?.makeKeyAndVisible()
-        window?.rootViewController = ViewController()
-        
-        print(makeMovieApiURL())
+        let movieLoader = makeRemoteMovieLoaderFactory(url: makeMovieApiURL(), httpClient: makeURLSessionHttpGetClientFactory())
+        window?.rootViewController = makeMovieController(movieLoader: movieLoader)                
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "388D75F127CA1DA300EB713F"
-               BuildableName = "Main.app"
-               BlueprintName = "Main"
+               BlueprintIdentifier = "388D766427CA38E100EB713F"
+               BuildableName = "UI.framework"
+               BlueprintName = "UI"
                ReferencedContainer = "container:MoviesCleanApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,28 +26,16 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      enableThreadSanitizer = "YES"
-      codeCoverageEnabled = "YES"
-      onlyGenerateCoverageForSpecifiedTargets = "YES">
-      <CodeCoverageTargets>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "388D75F127CA1DA300EB713F"
-            BuildableName = "Main.app"
-            BlueprintName = "Main"
-            ReferencedContainer = "container:MoviesCleanApp.xcodeproj">
-         </BuildableReference>
-      </CodeCoverageTargets>
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO"
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "388D760627CA1DA600EB713F"
-               BuildableName = "MainTests.xctest"
-               BlueprintName = "MainTests"
+               BlueprintIdentifier = "388D769127CA398400EB713F"
+               BuildableName = "UITests.xctest"
+               BlueprintName = "UITests"
                ReferencedContainer = "container:MoviesCleanApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -63,16 +51,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "388D75F127CA1DA300EB713F"
-            BuildableName = "Main.app"
-            BlueprintName = "Main"
-            ReferencedContainer = "container:MoviesCleanApp.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -80,16 +58,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "388D75F127CA1DA300EB713F"
-            BuildableName = "Main.app"
-            BlueprintName = "Main"
+            BlueprintIdentifier = "388D766427CA38E100EB713F"
+            BuildableName = "UI.framework"
+            BlueprintName = "UI"
             ReferencedContainer = "container:MoviesCleanApp.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

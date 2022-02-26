@@ -2,11 +2,10 @@
 //  UITests.swift
 //  UITests
 //
-//  Created by Luiz Diniz Hammerli on 25/02/22.
+//  Created by Luiz Hammerli on 26/02/22.
 //
 
 import XCTest
-@testable import UI
 
 class UITests: XCTestCase {
 
@@ -28,7 +27,7 @@ class UITests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
     }

@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public final class DefaultFeedImageDataLoaderTask: MovieImageDataLoaderTask {
+public final class DefaultMovieImageDataLoaderTask: MovieImageDataLoaderTask {
     let task: HttpClientTask
     
     init(task: HttpClientTask) {
@@ -20,7 +20,7 @@ public final class DefaultFeedImageDataLoaderTask: MovieImageDataLoaderTask {
     }
 }
 
-public final class RemoteFeedImageDataLoader: MovieImageDataLoader {
+public final class RemoteMovieImageDataLoader: MovieImageDataLoader {
     let client: HttpGetClient
     
     public init(client: HttpGetClient) {

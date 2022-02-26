@@ -61,7 +61,7 @@
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "25FD09C427C97C010084F3FC"
+            BlueprintIdentifier = "388D766427CA38E100EB713F"
             BuildableName = "UI.framework"
             BlueprintName = "UI"
             ReferencedContainer = "container:MoviesCleanApp.xcodeproj">

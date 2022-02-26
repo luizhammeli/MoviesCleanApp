@@ -2,12 +2,12 @@
 //  CodeView.swift
 //  UI
 //
-//  Created by Luiz Hammerli on 25/02/22.
+//  Created by Luiz Hammerli on 26/02/22.
 //
 
 import Foundation
 
-protocol CodeView {
+public protocol CodeView {
     func buildViewHierarchy()
     func setupConstraints()
     func setupAdditionalConfiguration()

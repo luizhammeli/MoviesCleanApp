@@ -78,6 +78,8 @@
 		388D764027CA257500EB713F /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 388D763E27CA257500EB713F /* Debug.xcconfig */; };
 		388D764127CA257500EB713F /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 388D763F27CA257500EB713F /* Release.xcconfig */; };
 		388D764327CA263500EB713F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388D764227CA263500EB713F /* Environment.swift */; };
+		388D764627CA271A00EB713F /* MovieControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388D764527CA271A00EB713F /* MovieControllerFactory.swift */; };
+		388D764827CA279F00EB713F /* ApiURLFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388D764727CA279F00EB713F /* ApiURLFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -293,6 +295,8 @@
 		388D763E27CA257500EB713F /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		388D763F27CA257500EB713F /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		388D764227CA263500EB713F /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		388D764527CA271A00EB713F /* MovieControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieControllerFactory.swift; sourceTree = "<group>"; };
+		388D764727CA279F00EB713F /* ApiURLFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiURLFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -721,6 +725,7 @@
 				388D763D27CA23DA00EB713F /* Env */,
 				388D763A27CA20E100EB713F /* Proxies */,
 				388D762227CA201F00EB713F /* Decorators */,
+				388D764427CA26CC00EB713F /* Factories */,
 				388D75F427CA1DA300EB713F /* AppDelegate.swift */,
 				388D75F627CA1DA300EB713F /* SceneDelegate.swift */,
 				388D75F827CA1DA300EB713F /* ViewController.swift */,
@@ -763,6 +768,15 @@
 				388D764227CA263500EB713F /* Environment.swift */,
 			);
 			path = Env;
+			sourceTree = "<group>";
+		};
+		388D764427CA26CC00EB713F /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				388D764527CA271A00EB713F /* MovieControllerFactory.swift */,
+				388D764727CA279F00EB713F /* ApiURLFactory.swift */,
+			);
+			path = Factories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1327,6 +1341,8 @@
 				388D762427CA202700EB713F /* MainQueueDispatchDecorator.swift in Sources */,
 				388D764327CA263500EB713F /* Environment.swift in Sources */,
 				388D75F927CA1DA300EB713F /* ViewController.swift in Sources */,
+				388D764827CA279F00EB713F /* ApiURLFactory.swift in Sources */,
+				388D764627CA271A00EB713F /* MovieControllerFactory.swift in Sources */,
 				388D763C27CA20F400EB713F /* WeakVarProxy.swift in Sources */,
 				388D75F527CA1DA300EB713F /* AppDelegate.swift in Sources */,
 				388D75F727CA1DA300EB713F /* SceneDelegate.swift in Sources */,
@@ -2066,6 +2082,7 @@
 		388D761A27CA1DA600EB713F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_BASE_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=da3239f04025a1e8fa95d19e374e8a24/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -2073,8 +2090,10 @@
 				DEVELOPMENT_TEAM = M2DD4Z95YZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Main/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Movies Clean App";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -2088,13 +2107,14 @@
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		388D761B27CA1DA600EB713F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_BASE_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=da3239f04025a1e8fa95d19e374e8a24/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -2102,8 +2122,10 @@
 				DEVELOPMENT_TEAM = M2DD4Z95YZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Main/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Movies Clean App";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -2117,7 +2139,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

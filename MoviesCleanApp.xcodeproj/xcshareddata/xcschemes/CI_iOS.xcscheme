@@ -54,6 +54,13 @@
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
+            BlueprintIdentifier = "388D75F127CA1DA300EB713F"
+            BuildableName = "Main.app"
+            BlueprintName = "Main"
+            ReferencedContainer = "container:MoviesCleanApp.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
             BlueprintIdentifier = "25364CD827C918A60039496C"
             BuildableName = "Presentation.framework"
             BlueprintName = "Presentation"
@@ -95,6 +102,17 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "388D760627CA1DA600EB713F"
+               BuildableName = "MainTests.xctest"
+               BlueprintName = "MainTests"
+               ReferencedContainer = "container:MoviesCleanApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "3804F5BD27C86532009A6CE6"
                BuildableName = "MoviesCleanAppEndToEndTests.xctest"
                BlueprintName = "MoviesCleanAppEndToEndTests"
@@ -102,7 +120,8 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "25364CDF27C918A60039496C"
@@ -116,20 +135,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "25FD09CB27C97C010084F3FC"
+               BlueprintIdentifier = "388D769127CA398400EB713F"
                BuildableName = "UITests.xctest"
                BlueprintName = "UITests"
-               ReferencedContainer = "container:MoviesCleanApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "388D760627CA1DA600EB713F"
-               BuildableName = "MainTests.xctest"
-               BlueprintName = "MainTests"
                ReferencedContainer = "container:MoviesCleanApp.xcodeproj">
             </BuildableReference>
          </TestableReference>

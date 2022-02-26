@@ -90,6 +90,7 @@
 		388D76B627CA3B1C00EB713F /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388D76B527CA3B1C00EB713F /* UIView+Constraints.swift */; };
 		388D76BA27CA3B7B00EB713F /* MoviesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388D76B927CA3B7B00EB713F /* MoviesCollectionViewController.swift */; };
 		388D76BD27CA3BA600EB713F /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388D76BC27CA3BA600EB713F /* MovieCollectionViewCell.swift */; };
+		38CC454927CAA8F3006428E4 /* RemoteMovieImageDataLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CC454827CAA8F3006428E4 /* RemoteMovieImageDataLoaderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -351,6 +352,7 @@
 		388D76B527CA3B1C00EB713F /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		388D76B927CA3B7B00EB713F /* MoviesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewController.swift; sourceTree = "<group>"; };
 		388D76BC27CA3BA600EB713F /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		38CC454827CAA8F3006428E4 /* RemoteMovieImageDataLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMovieImageDataLoaderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -547,7 +549,7 @@
 			children = (
 				25364CA027C7EB7E0039496C /* Helpers */,
 				25364C9D27C7EAB90039496C /* Http */,
-				25364C9327C7B2370039496C /* RemoteMovieLoaderTests.swift */,
+				38CC454727CAA87D006428E4 /* UseCases */,
 			);
 			path = DataTests;
 			sourceTree = "<group>";
@@ -885,6 +887,15 @@
 				388D76BC27CA3BA600EB713F /* MovieCollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		38CC454727CAA87D006428E4 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				25364C9327C7B2370039496C /* RemoteMovieLoaderTests.swift */,
+				38CC454827CAA8F3006428E4 /* RemoteMovieImageDataLoaderTests.swift */,
+			);
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1371,6 +1382,7 @@
 				25364C9F27C7EAC10039496C /* HttpGetClientSpy.swift in Sources */,
 				25364CA527C7EC120039496C /* TestFactories.swift in Sources */,
 				25364C9427C7B2370039496C /* RemoteMovieLoaderTests.swift in Sources */,
+				38CC454927CAA8F3006428E4 /* RemoteMovieImageDataLoaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

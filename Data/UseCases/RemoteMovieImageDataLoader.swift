@@ -8,17 +8,17 @@
 import Foundation
 import Domain
 
-public final class DefaultMovieImageDataLoaderTask: MovieImageDataLoaderTask {
-    let task: HttpClientTask
-    
-    init(task: HttpClientTask) {
-        self.task = task
-    }
-    
-    public func cancel() {
-        task.cancel()
-    }
-}
+//public final class DefaultMovieImageDataLoaderTask: MovieImageDataLoaderTask {
+//    let task: HttpClientTask
+//
+//    init(task: HttpClientTask) {
+//        self.task = task
+//    }
+//
+//    public func cancel() {
+//        task.cancel()
+//    }
+//}
 
 public final class RemoteMovieImageDataLoader: MovieImageDataLoader {
     let client: HttpGetClient
@@ -26,8 +26,7 @@ public final class RemoteMovieImageDataLoader: MovieImageDataLoader {
     public init(client: HttpGetClient) {
         self.client = client
     }
-    
-    //@discardableResult
+        
     public func loadFeedImageData(from url: URL, completion: @escaping (MovieImageDataLoader.Result) -> Void) {
         client.get(url) { [weak self] result in
             guard self != nil else { return }
@@ -35,7 +34,7 @@ public final class RemoteMovieImageDataLoader: MovieImageDataLoader {
             case .failure:
                 completion(.failure(.unexpected))
             case .success((let data)):
-                guard let data = data, data.isEmpty else {
+                guard let data = data, !data.isEmpty else {
                     return completion(.failure(.invalidData))
                 }
                 completion(.success(data))

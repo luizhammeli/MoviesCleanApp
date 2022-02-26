@@ -20,3 +20,13 @@ final class MainQueueDispatchDecorator<T> {
         completion()
     }
 }
+
+extension MainQueueDispatchDecorator: MovieLoader where T == MovieLoader {
+    func load(completion: @escaping (MovieLoader.Result) -> Void) {
+        instance.load { [weak self] result in
+            self?.dispatch {
+                completion(result)
+            }
+        }
+    }
+}

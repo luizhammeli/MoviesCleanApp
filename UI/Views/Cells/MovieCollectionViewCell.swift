@@ -44,13 +44,13 @@ final class MovieCollectionViewCell: UICollectionViewCell {
     
     func loadImage(_ url: URL){
 
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            DispatchQueue.main.async {
-                self.image.image = UIImage(data: data ?? Data())
-                self.activityIndicator.stopAnimating()
-            }
-        }.resume()
-        
+//        URLSession.shared.dataTask(with: url) { (data, response, error) in
+//            DispatchQueue.main.async {
+//                self.image.image = UIImage(data: data ?? Data())
+//                self.activityIndicator.stopAnimating()
+//            }
+//        }.resume()
+//        
 //        DispatchQueue.global().async {
 //            guard let imageData = try? Data(contentsOf: url) else {return}
 //

@@ -7,6 +7,10 @@
 
 import Foundation
 
+public protocol HttpClientTask {
+    func cancel()
+}
+
 public protocol HttpGetClient {
     typealias Result = Swift.Result<Data?, HttpError>
     func get(_ url: URL, completion: @escaping (Result) -> Void)

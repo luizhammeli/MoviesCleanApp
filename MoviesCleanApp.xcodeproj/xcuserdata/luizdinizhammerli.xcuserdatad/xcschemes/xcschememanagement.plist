@@ -12,7 +12,7 @@
 		<key>CI_iOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>8</integer>
 		</dict>
 		<key>Data.xcscheme_^#shared#^_</key>
 		<dict>
@@ -28,6 +28,11 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
+		</dict>
+		<key>Main.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>MoviesCleanApp.xcscheme_^#shared#^_</key>
 		<dict>
@@ -78,6 +83,11 @@
 			<true/>
 		</dict>
 		<key>25364CDF27C918A60039496C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>388D769127CA398400EB713F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

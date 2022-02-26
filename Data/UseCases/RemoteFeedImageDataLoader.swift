@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public final class DefaultFeedImageDataLoaderTask: FeedImageDataLoaderTask {
+public final class DefaultFeedImageDataLoaderTask: MovieImageDataLoaderTask {
     let task: HttpClientTask
     
     init(task: HttpClientTask) {
@@ -20,7 +20,7 @@ public final class DefaultFeedImageDataLoaderTask: FeedImageDataLoaderTask {
     }
 }
 
-public final class RemoteFeedImageDataLoader: FeedImageDataLoader {
+public final class RemoteFeedImageDataLoader: MovieImageDataLoader {
     let client: HttpGetClient
     
     public init(client: HttpGetClient) {
@@ -28,7 +28,7 @@ public final class RemoteFeedImageDataLoader: FeedImageDataLoader {
     }
     
     //@discardableResult
-    public func loadFeedImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) {
+    public func loadFeedImageData(from url: URL, completion: @escaping (MovieImageDataLoader.Result) -> Void) {
         client.get(url) { [weak self] result in
             guard self != nil else { return }
             switch result {

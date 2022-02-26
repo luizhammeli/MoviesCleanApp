@@ -75,6 +75,7 @@
 		388D763227CA206C00EB713F /* Presentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25364CD927C918A60039496C /* Presentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		388D763527CA206C00EB713F /* UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FD09C527C97C010084F3FC /* UI.framework */; platformFilter = ios; };
 		388D763627CA206C00EB713F /* UI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25FD09C527C97C010084F3FC /* UI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		388D763C27CA20F400EB713F /* WeakVarProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388D763B27CA20F400EB713F /* WeakVarProxy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,6 +288,7 @@
 		388D760727CA1DA600EB713F /* MainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		388D760B27CA1DA600EB713F /* MainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTests.swift; sourceTree = "<group>"; };
 		388D762327CA202700EB713F /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
+		388D763B27CA20F400EB713F /* WeakVarProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakVarProxy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -712,6 +714,7 @@
 		388D75F327CA1DA300EB713F /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				388D763A27CA20E100EB713F /* Proxies */,
 				388D762227CA201F00EB713F /* Decorators */,
 				388D75F427CA1DA300EB713F /* AppDelegate.swift */,
 				388D75F627CA1DA300EB713F /* SceneDelegate.swift */,
@@ -738,6 +741,14 @@
 				388D762327CA202700EB713F /* MainQueueDispatchDecorator.swift */,
 			);
 			path = Decorators;
+			sourceTree = "<group>";
+		};
+		388D763A27CA20E100EB713F /* Proxies */ = {
+			isa = PBXGroup;
+			children = (
+				388D763B27CA20F400EB713F /* WeakVarProxy.swift */,
+			);
+			path = Proxies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1300,6 +1311,7 @@
 			files = (
 				388D762427CA202700EB713F /* MainQueueDispatchDecorator.swift in Sources */,
 				388D75F927CA1DA300EB713F /* ViewController.swift in Sources */,
+				388D763C27CA20F400EB713F /* WeakVarProxy.swift in Sources */,
 				388D75F527CA1DA300EB713F /* AppDelegate.swift in Sources */,
 				388D75F727CA1DA300EB713F /* SceneDelegate.swift in Sources */,
 			);

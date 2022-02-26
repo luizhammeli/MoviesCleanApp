@@ -23,3 +23,4 @@ public final class MoviesCollectionViewController: UICollectionViewController {
         collectionView.backgroundColor = .red
     }
 }
+    

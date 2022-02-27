@@ -15,7 +15,7 @@ public protocol CodeView {
 }
 
 extension CodeView {
-    func setupViews() {
+    public func setupViews() {
         buildViewHierarchy()
         setupConstraints()
         setupAdditionalConfiguration()

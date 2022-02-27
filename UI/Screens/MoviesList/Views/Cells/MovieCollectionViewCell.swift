@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Presentation
 
 final class MovieCollectionViewCell: UICollectionViewCell {
+    private let activityIndicator = UIActivityIndicatorView(style: .medium)
     private let imageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -20,9 +22,9 @@ final class MovieCollectionViewCell: UICollectionViewCell {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.darkGray
+        label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
-        label.numberOfLines = 3
+        label.numberOfLines = 2
         label.textAlignment = .center
         return label
     }()
@@ -30,6 +32,7 @@ final class MovieCollectionViewCell: UICollectionViewCell {
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel])
         stackView.axis = .vertical
+        stackView.spacing = 5
         return stackView
     }()
         
@@ -42,23 +45,23 @@ final class MovieCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func loadImage(_ url: URL){
-
-//        URLSession.shared.dataTask(with: url) { (data, response, error) in
-//            DispatchQueue.main.async {
-//                self.image.image = UIImage(data: data ?? Data())
-//                self.activityIndicator.stopAnimating()
-//            }
-//        }.resume()
-//
-//        DispatchQueue.global().async {
-//            guard let imageData = try? Data(contentsOf: url) else {return}
-//
-//            DispatchQueue.main.async {
-//                self.image.image = UIImage(data: imageData)
-//                self.activityIndicator.stopAnimating()
-//            }
-//        }
+    func loadImage(_ url: URL) {
+        imageView.alpha = 0
+        activityIndicator.startAnimating()
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            DispatchQueue.main.async {
+                self.imageView.image = UIImage(data: data ?? Data())
+                UIView.animate(withDuration: 0.2) {
+                    self.imageView.alpha = 1
+                }
+                self.activityIndicator.stopAnimating()
+            }
+        }.resume()
+    }
+    
+    func set(viewModel: MovieViewModel) {
+        loadImage(viewModel.imageURL)
+        titleLabel.text = viewModel.title
     }
 }
 
@@ -66,14 +69,16 @@ final class MovieCollectionViewCell: UICollectionViewCell {
 extension MovieCollectionViewCell: CodeView {
     func buildViewHierarchy() {
         self.addSubview(mainStackView)
+        mainStackView.addSubview(activityIndicator)
     }
     
     func setupConstraints() {
         mainStackView.fillSuperview()
-        imageView.anchor(heightAnchor: heightAnchor, heightMultiplier: 0.85, widthAnchor: nil, widthMultiplier: 0)
+        activityIndicator.centerInSuperview()
+        imageView.anchor(heightAnchor: heightAnchor, heightMultiplier: 0.8, widthMultiplier: 0)
     }
     
     func setupAdditionalConfiguration() {
-        backgroundColor = .white
+        backgroundColor = .clear
     }
 }

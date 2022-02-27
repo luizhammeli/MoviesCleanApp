@@ -12,6 +12,13 @@ import Presentation
 import UI
 
 func makeMovieController(movieLoader: MovieLoader) -> MoviesCollectionViewController {
-    let layout = UICollectionViewFlowLayout()
-    return MoviesCollectionViewController(layout: layout, loadMovies: { })
+    let controller = MoviesCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+    let baseURL = Environment.variable(for: .apiImageBaseURL)
+    let presenter = MovieViewPresenter(imageBaseURL: baseURL,
+                                       loader: MainQueueDispatchDecorator(instance: movieLoader),
+                                       loadingView: WeakVarProxy(controller),
+                                       movieView: WeakVarProxy(controller),
+                                       alertView: WeakVarProxy(controller))
+    controller.loadMovies = presenter.loadMovies
+    return controller
 }

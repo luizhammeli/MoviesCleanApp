@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Data
 import Domain
 import Presentation
 

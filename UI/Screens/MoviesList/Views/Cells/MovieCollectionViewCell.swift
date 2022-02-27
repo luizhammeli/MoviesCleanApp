@@ -78,7 +78,5 @@ extension MovieCollectionViewCell: CodeView {
         imageView.anchor(heightAnchor: heightAnchor, heightMultiplier: 0.8, widthMultiplier: 0)
     }
     
-    func setupAdditionalConfiguration() {
-        backgroundColor = .clear
-    }
+    func setupAdditionalConfiguration() {}
 }

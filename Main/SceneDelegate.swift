@@ -26,8 +26,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func setupRootViewController() -> UIViewController {
-        let movieLoader = makeRemoteMovieLoaderFactory(url: makeMovieApiURL(), httpClient: makeURLSessionHttpGetClientFactory())
-        let controller = makeMovieController(movieLoader: movieLoader)
+        let httpClient = makeURLSessionHttpGetClientFactory()
+        let movieLoader = makeRemoteMovieLoaderFactory(url: makeMovieApiURL(), httpClient: httpClient)
+        let imageLoader = makeRemoteMovieImageLoaderFactory(httpClient: httpClient)
+        let controller = makeMovieController(movieLoader: movieLoader, imageLoader: imageLoader)
         return UINavigationController(rootViewController: controller)
     }
 

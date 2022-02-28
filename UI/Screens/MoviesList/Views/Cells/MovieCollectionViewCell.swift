@@ -8,7 +8,7 @@
 import UIKit
 import Presentation
 
-final class MovieCollectionViewCell: UICollectionViewCell {
+public final class MovieCollectionViewCell: UICollectionViewCell {
     private let activityIndicator = UIActivityIndicatorView(style: .medium)
     private let imageView: UIImageView = {
         let image = UIImageView()
@@ -67,16 +67,16 @@ final class MovieCollectionViewCell: UICollectionViewCell {
 
 // MARK: - CodeView
 extension MovieCollectionViewCell: CodeView {
-    func buildViewHierarchy() {
+    public func buildViewHierarchy() {
         self.addSubview(mainStackView)
         mainStackView.addSubview(activityIndicator)
     }
     
-    func setupConstraints() {
+    public func setupConstraints() {
         mainStackView.fillSuperview()
         activityIndicator.centerInSuperview()
         imageView.anchor(heightAnchor: heightAnchor, heightMultiplier: 0.8, widthMultiplier: 0)
     }
     
-    func setupAdditionalConfiguration() {}
+    public func setupAdditionalConfiguration() {}
 }

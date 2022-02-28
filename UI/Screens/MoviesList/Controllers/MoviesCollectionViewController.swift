@@ -12,6 +12,8 @@ public final class MoviesCollectionViewController: UICollectionViewController {
     private var activityIndicator = UIActivityIndicatorView(style: .large)
     
     public var loadMovies: (() -> Void)?
+    public var loadCells: (([MovieViewModel]) -> [MovieCollectionViewCellController])?
+    
     private var movies: [MovieCollectionViewCellController] = [] {
         didSet {
             collectionView.reloadData()
@@ -22,8 +24,8 @@ public final class MoviesCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         setupViews()
         setupCollectionView()
-        setupNavigationController()
-        loadMovies?()        
+        loadMovies?()
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func registerCells() {
@@ -34,11 +36,6 @@ public final class MoviesCollectionViewController: UICollectionViewController {
     private func setupCollectionView() {
         registerCells()        
         title = MovieViewPresenter.title
-    }
-    
-    private func setupNavigationController() {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        collectionView.backgroundColor = .systemBackground
     }
     
     public override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -114,7 +111,7 @@ extension MoviesCollectionViewController: MovieLoadingView {
 // MARK: - MovieView
 extension MoviesCollectionViewController: MovieView {
     public func display(movies: [MovieViewModel]) {
-        self.movies = movies.map { MovieCollectionViewCellController(viewModel: $0) }
+        self.movies = loadCells?(movies) ?? []
     }
 }
 

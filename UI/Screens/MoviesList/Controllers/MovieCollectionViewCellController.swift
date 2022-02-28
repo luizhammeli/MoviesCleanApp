@@ -13,7 +13,7 @@ public final class MovieCollectionViewCellController {
     var cell: MovieCollectionViewCell?
     var viewModel: MovieViewModel?
     
-    init(viewModel: MovieViewModel) {
+    public init(viewModel: MovieViewModel) {
         self.viewModel = viewModel
     }
     

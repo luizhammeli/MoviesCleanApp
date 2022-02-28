@@ -36,13 +36,52 @@ final class MoviesListUIIntegrationTests: XCTestCase {
     func test_loadingIndicator_isVisibleWhileLoadingMoviesWithSuccess() {
         simulateAndAssertTheLoadingIndicatorWhenLoaderCompletes(with: .success([]))
     }
+    
+    func test_loadCompletion_rendersSuccessfullyLoadedFeed() {
+        let imageLoader = MovieImageDataLoaderSpy()
+        let (sut, loaderSpy) = makeSUT(imageLoader: imageLoader)
+        XCTAssertEqual(sut.numberOfRenderedMovieViews, 0)
+        
+        let movie0 = anyMovie(id: 10, title: "Test Movie", poster_path: UUID().description)
+        let movie1 = anyMovie(id: 11, title: "Test Movie 2", poster_path: UUID().description)
+        
+        let image0 = UIImage.make(withColor: .blue).pngData()!
+        let image1 = UIImage.make(withColor: .red).pngData()!
+
+        sut.loadViewIfNeeded()
+        loaderSpy.complete(with: .success([movie0, movie1]), at: 0)
+        
+//        imageLoader.complete(with: .success(image0), at: 0)
+//        imageLoader.complete(with: .success(image1), at: 1)
+        
+        XCTAssertEqual(sut.numberOfRenderedMovieViews, 2)
+        
+        let movieView0 = sut.movieViewAt(index: 0)
+        let movieView1 = sut.movieViewAt(index: 1)
+        
+        XCTAssertEqual(movieView0.title, movie0.title)
+        XCTAssertEqual(movieView1.title, movie1.title)
+        
+//        XCTAssertEqual(movieView0.image, UIImage(data: image0))
+//        XCTAssertEqual(movieView1.image, UIImage(data: image1))
+    }
+    
+    func test_loadCompletion_rendersNoViewsWhenLoadingCompletesWithError() {
+        let (sut, loaderSpy) = makeSUT()
+        XCTAssertEqual(sut.numberOfRenderedMovieViews, 0)
+
+        sut.loadViewIfNeeded()
+        loaderSpy.complete(with: .failure(.unexpected), at: 0)
+        
+        XCTAssertEqual(sut.numberOfRenderedMovieViews, 0)
+    }
 }
 
 // MARK: - Helpers
 private extension MoviesListUIIntegrationTests {
-    func makeSUT() -> (MoviesCollectionViewController, RemoteMovieLoaderSpy) {
+    func makeSUT(imageLoader: MovieImageDataLoader = MovieImageDataLoaderSpy()) -> (MoviesCollectionViewController, RemoteMovieLoaderSpy) {
         let loader = RemoteMovieLoaderSpy()
-        let sut = makeMovieController(movieLoader: loader)
+        let sut = makeMovieController(movieLoader: loader, imageLoader: imageLoader)
         checkMemoryLeak(for: loader)
         checkMemoryLeak(for: sut)
         return (sut, loader)
@@ -71,10 +110,42 @@ private extension MoviesListUIIntegrationTests {
     }
 }
 
-// MARK: - MoviesCollectionViewController
+// MARK: - Helpers MoviesCollectionViewController
 private extension MoviesCollectionViewController {
     func isLoadingIndicatorVisible() -> Bool {
         let loadingIndicator = view.subviews.last as! UIActivityIndicatorView
         return loadingIndicator.isAnimating
+    }
+    
+    var numberOfRenderedMovieViews: Int {
+        return collectionView.numberOfItems(inSection: 0)
+    }
+    
+    func movieViewAt(index: Int) -> MovieCollectionViewCell {
+        return collectionView(self.collectionView, cellForItemAt: IndexPath(item: index, section: 0)) as! MovieCollectionViewCell
+    }
+}
+
+// MARK: - Helpers MovieCollectionViewCell
+private extension MovieCollectionViewCell {
+    var title: String? {
+        guard let stackView = subviews.first as? UIStackView, let titleLabel = stackView.arrangedSubviews.last as? UILabel else { return nil }
+        return titleLabel.text
+    }
+    
+    var image: UIImage? {
+        guard let stackView = subviews.first as? UIStackView, let imageView = stackView.arrangedSubviews.last as? UIImageView else { return nil }
+        return imageView.image
+    }
+}
+
+final class MovieImageDataLoaderSpy: MovieImageDataLoader {
+    var completions: [(MovieImageDataLoader.Result) -> Void] = []
+    func loadFeedImageData(from url: URL, completion: @escaping (MovieImageDataLoader.Result) -> Void) {
+        completions.append(completion)
+    }
+    
+    func complete(with result: MovieImageDataLoader.Result, at index: Int = 0) {
+        //completions[index](result)
     }
 }

@@ -11,7 +11,9 @@ import Domain
 import Presentation
 import UI
 
-func makeMovieController(movieLoader: MovieLoader, imageBaseURL: String = Environment.variable(for: .apiImageBaseURL) ) -> MoviesCollectionViewController {
+func makeMovieController(movieLoader: MovieLoader,
+                         imageLoader: MovieImageDataLoader,
+                         imageBaseURL: String = Environment.variable(for: .apiImageBaseURL)) -> MoviesCollectionViewController {
     let controller = MoviesCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())    
     let presenter = MovieViewPresenter(imageBaseURL: imageBaseURL,
                                        loader: MainQueueDispatchDecorator(instance: movieLoader),
@@ -19,5 +21,12 @@ func makeMovieController(movieLoader: MovieLoader, imageBaseURL: String = Enviro
                                        movieView: WeakVarProxy(controller),
                                        alertView: WeakVarProxy(controller))
     controller.loadMovies = presenter.loadMovies
+    controller.loadCells = makeCellController(imageLoader: imageLoader)
     return controller
+}
+
+func makeCellController(imageLoader: MovieImageDataLoader) -> (([MovieViewModel]) -> [MovieCollectionViewCellController]) {
+    return { movies in
+        movies.map { MovieCollectionViewCellController(viewModel: $0) }
+    }
 }

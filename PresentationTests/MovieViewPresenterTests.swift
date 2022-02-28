@@ -76,15 +76,3 @@ private extension MovieViewPresenterTests {
                                  bundle: Bundle(for: MovieViewPresenter.self), comment: "")
     }
 }
-
-final class RemoteMovieLoaderSpy: MovieLoader {
-    var completions: [(MovieLoader.Result) -> Void] = []
-    
-    func load(completion: @escaping (MovieLoader.Result) -> Void) {
-        completions.append(completion)
-    }
-    
-    func complete(with result: MovieLoader.Result, at index: Int) {
-        completions[index](result)
-    }
-}

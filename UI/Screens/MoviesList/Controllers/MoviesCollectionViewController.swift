@@ -23,7 +23,7 @@ public final class MoviesCollectionViewController: UICollectionViewController {
         setupViews()
         setupCollectionView()
         setupNavigationController()
-        loadMovies?()
+        loadMovies?()        
     }
     
     private func registerCells() {

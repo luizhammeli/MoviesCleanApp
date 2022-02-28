@@ -11,10 +11,9 @@ import Domain
 import Presentation
 import UI
 
-func makeMovieController(movieLoader: MovieLoader) -> MoviesCollectionViewController {
-    let controller = MoviesCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
-    let baseURL = Environment.variable(for: .apiImageBaseURL)
-    let presenter = MovieViewPresenter(imageBaseURL: baseURL,
+func makeMovieController(movieLoader: MovieLoader, imageBaseURL: String = Environment.variable(for: .apiImageBaseURL) ) -> MoviesCollectionViewController {
+    let controller = MoviesCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())    
+    let presenter = MovieViewPresenter(imageBaseURL: imageBaseURL,
                                        loader: MainQueueDispatchDecorator(instance: movieLoader),
                                        loadingView: WeakVarProxy(controller),
                                        movieView: WeakVarProxy(controller),

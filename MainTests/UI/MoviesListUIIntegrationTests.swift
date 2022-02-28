@@ -65,7 +65,7 @@ private extension MoviesListUIIntegrationTests {
                 
         XCTAssertTrue(sut.isLoadingIndicatorVisible(), file: file, line: line)
         
-        loaderSpy.complete(with: .success([]), at: 0)
+        loaderSpy.complete(with: result, at: 0)
         
         XCTAssertFalse(sut.isLoadingIndicatorVisible(), file: file, line: line)
     }

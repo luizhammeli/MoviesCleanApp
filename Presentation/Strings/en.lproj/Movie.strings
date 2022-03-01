@@ -6,3 +6,5 @@
   
 */
 "MOVIE_VIEW_TITLE" = "My Movies";
+"MOVIE_VIEW_ERROR_LOAD_MESSAGE" = "Error to load movie data";
+"MOVIE_VIEW_ERROR_LOAD_TITLE" = "Error";

@@ -9,25 +9,42 @@ import Foundation
 import Domain
 
 public final class MovieViewPresenter {
+    public static var title: String {
+        return NSLocalizedString("MOVIE_VIEW_TITLE",
+                                 tableName: "Movie",
+                                 bundle: Bundle(for: MovieViewPresenter.self),
+                                 comment: "")
+    }
+    
+    public static var errorTitle: String {
+        return NSLocalizedString("MOVIE_VIEW_ERROR_LOAD_MESSAGE",
+                                 tableName: "Movie",
+                                 bundle: Bundle(for: MovieViewPresenter.self), comment: "")
+    }
+    
+    public static var errorMessage: String {
+        return NSLocalizedString("MOVIE_VIEW_ERROR_LOAD_TITLE",
+                                 tableName: "Movie",
+                                 bundle: Bundle(for: MovieViewPresenter.self), comment: "")
+    }
+    
     private let imageBaseURL: String
     private let loader: MovieLoader
-    
+
     private let loadingView: MovieLoadingView
     private let alertView: MovieAlertView
     private let movieView: MovieView
     
-    public init(imageBaseURL: String, loader: MovieLoader, loadingView: MovieLoadingView, movieView: MovieView, alertView: MovieAlertView) {
+    public init(imageBaseURL: String,
+                loader: MovieLoader,
+                loadingView: MovieLoadingView,
+                movieView: MovieView,
+                alertView: MovieAlertView) {
         self.loader = loader
         self.loadingView = loadingView
         self.movieView = movieView
         self.imageBaseURL = imageBaseURL
         self.alertView = alertView
-    }
-    
-    public static var title: String {
-        return NSLocalizedString("MOVIE_VIEW_TITLE",
-                                 tableName: "Movie",
-                                 bundle: Bundle(for: MovieViewPresenter.self), comment: "")
     }
     
     public func loadMovies() {
@@ -39,7 +56,8 @@ public final class MovieViewPresenter {
             case .success(let movies):
                 self.movieView.display(movies: self.toMoviesViewModel(movies: movies))
             case .failure:
-                self.alertView.display(viewModel: .init(title: "Erro", message: "Ocorreu um erro inesperado."))
+                self.alertView.display(viewModel: .init(title: MovieViewPresenter.errorTitle,
+                                                        message: MovieViewPresenter.errorMessage))
             }
         }
     }

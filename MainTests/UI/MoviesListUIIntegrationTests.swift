@@ -37,6 +37,14 @@ final class MoviesListUIIntegrationTests: XCTestCase {
         simulateAndAssertTheLoadingIndicatorWhenLoaderCompletes(with: .success([]))
     }
     
+    func test_imageLoadingIndicator_isVisibleWhileLoadingMoviesWithSuccess() {
+        simulateAndAssertTheImageLoadingIndicatorWhenLoaderCompletes(with: .success(Data()))
+    }
+    
+    func test_imageLoadingIndicator_isVisibleWhileLoadingMoviesWithError() {
+        simulateAndAssertTheImageLoadingIndicatorWhenLoaderCompletes(with: .failure(.unexpected))
+    }
+    
     func test_loadCompletion_rendersSuccessfullyLoadedFeed() {
         let imageLoaderSpy = MovieImageDataLoaderSpy()
         let (sut, loaderSpy) = makeSUT(imageLoader: imageLoaderSpy)
@@ -47,7 +55,7 @@ final class MoviesListUIIntegrationTests: XCTestCase {
         
         let image0 = UIImage.make(withColor: .blue).pngData()!
         let image1 = UIImage.make(withColor: .red).pngData()!
-
+        
         sut.loadViewIfNeeded()
         loaderSpy.complete(with: .success([movie0, movie1]), at: 0)
         
@@ -69,7 +77,7 @@ final class MoviesListUIIntegrationTests: XCTestCase {
     func test_loadCompletion_rendersNoViewsWhenLoadingCompletesWithError() {
         let (sut, loaderSpy) = makeSUT()
         XCTAssertEqual(sut.numberOfRenderedMovieViews, 0)
-
+        
         sut.loadViewIfNeeded()
         loaderSpy.complete(with: .failure(.unexpected), at: 0)
         
@@ -101,12 +109,29 @@ private extension MoviesListUIIntegrationTests {
     private func simulateAndAssertTheLoadingIndicatorWhenLoaderCompletes(with result: MovieLoader.Result, file: StaticString = #filePath, line: UInt = #line) {
         let (sut, loaderSpy) = makeSUT()
         sut.loadViewIfNeeded()
-                
+        
         XCTAssertTrue(sut.isLoadingIndicatorVisible(), file: file, line: line)
         
         loaderSpy.complete(with: result, at: 0)
         
         XCTAssertFalse(sut.isLoadingIndicatorVisible(), file: file, line: line)
+    }
+    
+    private func simulateAndAssertTheImageLoadingIndicatorWhenLoaderCompletes(with result: MovieImageDataLoader.Result,
+                                                                              file: StaticString = #filePath,
+                                                                              line: UInt = #line) {
+        let imageLoaderSpy = MovieImageDataLoaderSpy()
+        let (sut, loaderSpy) = makeSUT(imageLoader: imageLoaderSpy)
+        sut.loadViewIfNeeded()
+        
+        loaderSpy.complete(with: .success([anyMovie(id: 10, title: "", poster_path: "")]), at: 0)
+        let movieView = sut.movieViewAt(index: 0)
+        
+        XCTAssertTrue(movieView.isLoadingIndicatorVisible!, file: file, line: line)
+        
+        imageLoaderSpy.complete(with: result)
+        
+        XCTAssertFalse(movieView.isLoadingIndicatorVisible!, file: file, line: line)
     }
 }
 
@@ -136,6 +161,12 @@ private extension MovieCollectionViewCell {
     var image: UIImage? {
         guard let stackView = subviews.first as? UIStackView, let imageView = stackView.arrangedSubviews.first as? UIImageView else { return nil }
         return imageView.image
+    }
+    
+    var isLoadingIndicatorVisible: Bool? {
+        guard let stackView = subviews.first as? UIStackView,
+              let ac = stackView.subviews.last as? UIActivityIndicatorView else { return nil }
+        return ac.isAnimating
     }
 }
 

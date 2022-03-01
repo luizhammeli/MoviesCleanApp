@@ -9,7 +9,7 @@ import UIKit
 import Presentation
 
 public final class MovieCollectionViewCell: UICollectionViewCell {
-    let activityIndicator = UIActivityIndicatorView(style: .medium)
+    private let activityIndicator = UIActivityIndicatorView(style: .medium)
     private let imageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -54,6 +54,14 @@ public final class MovieCollectionViewCell: UICollectionViewCell {
         self.imageView.image = image
         UIView.animate(withDuration: 0.2) {
             self.imageView.alpha = 1
+        }
+    }
+    
+    func startLoading(loading: Bool) {
+        if loading {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
         }
     }
 }

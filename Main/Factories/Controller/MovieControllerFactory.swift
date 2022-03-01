@@ -14,7 +14,7 @@ import UI
 func makeMovieController(movieLoader: MovieLoader,
                          imageLoader: MovieImageDataLoader,
                          imageBaseURL: String = Environment.variable(for: .apiImageBaseURL)) -> MoviesCollectionViewController {
-    let controller = MoviesCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())    
+    let controller = MoviesCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
     let presenter = MovieViewPresenter(imageBaseURL: imageBaseURL,
                                        loader: MainQueueDispatchDecorator(instance: movieLoader),
                                        loadingView: WeakVarProxy(controller),
@@ -29,9 +29,12 @@ func makeCellController(imageLoader: MovieImageDataLoader) -> (([MovieViewModel]
     return { movies in
         movies.map { viewModel in
             let controller = MovieCollectionViewCellController(viewModel: viewModel)
-            let presenter = MovieImagePresenter<WeakVarProxy<MovieCollectionViewCellController>, UIImage>(loader: MainQueueDispatchDecorator(instance: imageLoader),
-                                                                                                          view: WeakVarProxy(controller),
-                                                                                                          imageTransformer: UIImage.init)
+            let loader = MainQueueDispatchDecorator(instance: imageLoader)            
+            let presenter = MovieImagePresenter<WeakVarProxy<MovieCollectionViewCellController>,
+                                                UIImage>(loader: loader,
+                                                         alertView: WeakVarProxy(controller),
+                                                         view: WeakVarProxy(controller),
+                                                         imageTransformer: UIImage.init)
             controller.loadImage = presenter.load
             return controller
         }

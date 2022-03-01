@@ -23,7 +23,6 @@ public final class MovieCollectionViewCellController {
         cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MovieCollectionViewCell
         if let viewModel = viewModel {
             cell?.set(viewModel: viewModel)
-            cell?.activityIndicator.startAnimating()
             loadImage?(viewModel.imageURL)
         }
         return cell!
@@ -48,7 +47,14 @@ extension MovieCollectionViewCellController: MovieImageView {
     public typealias Image = UIImage
     
     public func display(image: Image?) {
-        cell?.activityIndicator.stopAnimating()
         cell?.setImage(image: image)
+    }
+}
+
+// MARK: - Alert
+
+extension MovieCollectionViewCellController: MovieLoadingView {
+    public func display(viewModel: MovieLoadingViewModel) {
+        cell?.startLoading(loading: viewModel.isLoading)        
     }
 }

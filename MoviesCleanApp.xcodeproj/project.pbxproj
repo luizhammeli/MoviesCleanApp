@@ -39,6 +39,7 @@
 		25583E8127CD881200957173 /* UIImage+ColorImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25583E8027CD881200957173 /* UIImage+ColorImage.swift */; };
 		25583E8427CD96C000957173 /* MovieImagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25583E8327CD96C000957173 /* MovieImagePresenter.swift */; };
 		25583E8927CE4F9900957173 /* MovieImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25583E8827CE4F9900957173 /* MovieImageView.swift */; };
+		25583E8C27CE522000957173 /* MovieImagePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25583E8B27CE522000957173 /* MovieImagePresenterTests.swift */; };
 		256A316E27CB9CC60054F1F1 /* MoviesListUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256A316D27CB9CC60054F1F1 /* MoviesListUIIntegrationTests.swift */; };
 		256F551A27C9575B00E6A03A /* MovieViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F551927C9575B00E6A03A /* MovieViewPresenter.swift */; };
 		256F551D27C96CB200E6A03A /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F551C27C96CB200E6A03A /* MovieView.swift */; };
@@ -284,6 +285,7 @@
 		25583E8027CD881200957173 /* UIImage+ColorImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+ColorImage.swift"; sourceTree = "<group>"; };
 		25583E8327CD96C000957173 /* MovieImagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieImagePresenter.swift; sourceTree = "<group>"; };
 		25583E8827CE4F9900957173 /* MovieImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieImageView.swift; sourceTree = "<group>"; };
+		25583E8B27CE522000957173 /* MovieImagePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieImagePresenterTests.swift; sourceTree = "<group>"; };
 		256A316D27CB9CC60054F1F1 /* MoviesListUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListUIIntegrationTests.swift; sourceTree = "<group>"; };
 		256F551927C9575B00E6A03A /* MovieViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewPresenter.swift; sourceTree = "<group>"; };
 		256F551C27C96CB200E6A03A /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
@@ -649,6 +651,7 @@
 			isa = PBXGroup;
 			children = (
 				25364CE527C918A60039496C /* MovieViewPresenterTests.swift */,
+				25583E8B27CE522000957173 /* MovieImagePresenterTests.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -1420,6 +1423,7 @@
 				256F552A27C96D9400E6A03A /* MovieViewSpy.swift in Sources */,
 				25FD09BE27C97A640084F3FC /* MovieLocalizationTests.swift in Sources */,
 				25364CE627C918A60039496C /* MovieViewPresenterTests.swift in Sources */,
+				25583E8C27CE522000957173 /* MovieImagePresenterTests.swift in Sources */,
 				25583E7827CD67D200957173 /* RemoteMovieLoaderSpy.swift in Sources */,
 				25364CEE27C925160039496C /* XCTestCase+Memory.swift in Sources */,
 			);

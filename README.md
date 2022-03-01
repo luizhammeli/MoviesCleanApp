@@ -1,8 +1,16 @@
-# CleanApp
+# MoviesCleanApp
 
 ![](https://github.com/luizhammeli/MoviesCleanApp/workflows/CI-iOS/badge.svg)
 
 MoviesCleanApp its a very simple study project using Clean Architecture concepts with MPV as UI anchitectural pattern. This project uses the TMDB api to show some currentily movies.
+
+## Story: Customer requests to see their image feed
+
+**Narrative #1):**
+
+As an online user
+I want the app to automatically load the latest movies in theaters
+So I can always be updated
 
 Project structure
 

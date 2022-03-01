@@ -6,13 +6,30 @@ MoviesCleanApp its a very simple study project using Clean Architecture concepts
 
 ## Story: Customer requests to see their image feed
 
-**Narrative #1):**
+**Narrative:**
 
 As an online user
 I want the app to automatically load the latest movies in theaters
 So I can always be updated
 
-Project structure
+## Use Cases
+
+### Load Movies From Remote Use Case
+
+#### Data:
+- URL
+
+#### Primary course (happy path):
+1. Execute "Load Movies" command with above data.
+2. System downloads data from the URL.
+3. System validates downloaded data.
+4. System creates movie feed from valid data.
+5. System delivers the movies list.
+
+#### No connectivity or Invalid data – error course (sad path):
+1. System delivers generic error.
+
+## Project structure
 
 In order to make easy reason about it the project was organised into six modules:
 

@@ -75,4 +75,8 @@ private extension MovieViewPresenterTests {
                                  tableName: "Movie",
                                  bundle: Bundle(for: MovieViewPresenter.self), comment: "")
     }
+    
+    func anyURL(stringValue: String = "https://test.com") -> URL {
+        return URL(string: stringValue)!
+    }
 }

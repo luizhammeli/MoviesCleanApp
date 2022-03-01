@@ -49,6 +49,9 @@ Build and run the Main module to execute the app in the simulator.
 - Improve the project features (Ex: Add some detail screen)
 - Improve the UI/UX
 - Add pagination
+- Improve the error course, handling different types of errors
+- Cancel the request task when cell is not visible (In Progress), to avoid unncessary request.
 
 ## Obs:
 - The UI tests was added in the main module as a integration tests between the Main, UI and Presentation layers.
+- The project in just using the default URLSession cache policy, as a next feature we can think about a better custom policy rules.

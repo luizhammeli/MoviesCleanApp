@@ -32,7 +32,7 @@ func makeCellController(imageLoader: MovieImageDataLoader) -> (([MovieViewModel]
             let loader = MainQueueDispatchDecorator(instance: imageLoader)            
             let presenter = MovieImagePresenter<WeakVarProxy<MovieCollectionViewCellController>,
                                                 UIImage>(loader: loader,
-                                                         alertView: WeakVarProxy(controller),
+                                                         loadingView: WeakVarProxy(controller),
                                                          view: WeakVarProxy(controller),
                                                          imageTransformer: UIImage.init)
             controller.loadImage = presenter.load

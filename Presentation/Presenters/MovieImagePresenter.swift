@@ -14,9 +14,9 @@ public final class MovieImagePresenter<View: MovieImageView, Image> where View.I
     let alertView: MovieLoadingView
     let imageTransformer: (Data) -> Image?
     
-    public init(loader: MovieImageDataLoader, alertView: MovieLoadingView, view: View, imageTransformer: @escaping (Data) -> Image?) {
+    public init(loader: MovieImageDataLoader, loadingView: MovieLoadingView, view: View, imageTransformer: @escaping (Data) -> Image?) {
         self.loader = loader
-        self.alertView = alertView
+        self.alertView = loadingView
         self.view = view
         self.imageTransformer = imageTransformer
     }

@@ -64,7 +64,7 @@ private extension MovieViewPresenterTests {
     }
     
     func toMovieModels(baseURL: String = "test", id: Int, title: String, posterPath: String) -> (model: Movie, movieViewModel: MovieViewModel) {
-        let movie = anyMovie(id: id, title: title, poster_path: posterPath)
+        let movie = Movie(id: id, title: title, posterPath: posterPath)
         let url = URL(string: "\(baseURL + movie.posterPath)")!
         let movieViewModel = MovieViewModel(title: movie.title, imageURL: url)
         return (movie, movieViewModel)

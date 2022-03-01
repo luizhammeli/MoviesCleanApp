@@ -83,6 +83,22 @@ final class MoviesListUIIntegrationTests: XCTestCase {
         
         XCTAssertEqual(sut.numberOfRenderedMovieViews, 0)
     }
+    
+    func test_loadCompletion_shouldDispatchFromBackgroundToMainThread() {
+        let (sut, loaderSpy) = makeSUT()
+        XCTAssertEqual(sut.numberOfRenderedMovieViews, 0)
+        
+        sut.loadViewIfNeeded()
+        let exp = expectation(description: #function)
+        
+        DispatchQueue.global().async {
+            loaderSpy.complete(with: .failure(.unexpected), at: 0)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1)
+        XCTAssertEqual(sut.numberOfRenderedMovieViews, 0)
+    }
 }
 
 // MARK: - Helpers

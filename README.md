@@ -54,4 +54,4 @@ Build and run the Main module to execute the app in the simulator.
 
 ## Obs:
 - The UI tests was added in the main module as a integration tests between the Main, UI and Presentation layers.
-- The project in just using the default URLSession cache policy, as a next feature we can think about a better custom policy rules.
+- The project is just using the default URLSession cache policy, as a next feature we can think about a better custom policy rules.

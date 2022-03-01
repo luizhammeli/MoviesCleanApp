@@ -51,6 +51,7 @@ Build and run the Main module to execute the app in the simulator.
 - Add pagination
 - Improve the error course, handling different types of errors
 - Cancel the request task when cell is not visible (In Progress), to avoid unncessary request.
+- Add some UI tests to validate UI flows that is not trivial simulate with Unit Test. Ex: UIAlertController presentation
 
 ## Obs:
 - The UI tests were added in the main module as integration tests between the Main, UI and Presentation layers.

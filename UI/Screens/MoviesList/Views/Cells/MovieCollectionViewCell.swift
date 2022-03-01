@@ -9,7 +9,7 @@ import UIKit
 import Presentation
 
 public final class MovieCollectionViewCell: UICollectionViewCell {
-    private let activityIndicator = UIActivityIndicatorView(style: .medium)
+    let activityIndicator = UIActivityIndicatorView(style: .medium)
     private let imageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -17,6 +17,7 @@ public final class MovieCollectionViewCell: UICollectionViewCell {
         image.layer.shadowRadius = 4
         image.layer.shadowOpacity = 0.5
         image.layer.shadowOffset = CGSize(width: 0, height: 10)
+        image.alpha = 0
         return image
     }()
     
@@ -45,23 +46,15 @@ public final class MovieCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func loadImage(_ url: URL) {
-        imageView.alpha = 0
-        activityIndicator.startAnimating()
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            DispatchQueue.main.async {
-                self.imageView.image = UIImage(data: data ?? Data())
-                UIView.animate(withDuration: 0.2) {
-                    self.imageView.alpha = 1
-                }
-                self.activityIndicator.stopAnimating()
-            }
-        }.resume()
+    func set(viewModel: MovieViewModel) {        
+        titleLabel.text = viewModel.title
     }
     
-    func set(viewModel: MovieViewModel) {
-        loadImage(viewModel.imageURL)
-        titleLabel.text = viewModel.title
+    func setImage(image: UIImage?) {
+        self.imageView.image = image
+        UIView.animate(withDuration: 0.2) {
+            self.imageView.alpha = 1
+        }
     }
 }
 

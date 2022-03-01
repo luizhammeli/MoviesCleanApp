@@ -38,8 +38,8 @@ final class MoviesListUIIntegrationTests: XCTestCase {
     }
     
     func test_loadCompletion_rendersSuccessfullyLoadedFeed() {
-        let imageLoader = MovieImageDataLoaderSpy()
-        let (sut, loaderSpy) = makeSUT(imageLoader: imageLoader)
+        let imageLoaderSpy = MovieImageDataLoaderSpy()
+        let (sut, loaderSpy) = makeSUT(imageLoader: imageLoaderSpy)
         XCTAssertEqual(sut.numberOfRenderedMovieViews, 0)
         
         let movie0 = anyMovie(id: 10, title: "Test Movie", poster_path: UUID().description)
@@ -51,19 +51,19 @@ final class MoviesListUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         loaderSpy.complete(with: .success([movie0, movie1]), at: 0)
         
-//        imageLoader.complete(with: .success(image0), at: 0)
-//        imageLoader.complete(with: .success(image1), at: 1)
-        
         XCTAssertEqual(sut.numberOfRenderedMovieViews, 2)
         
         let movieView0 = sut.movieViewAt(index: 0)
         let movieView1 = sut.movieViewAt(index: 1)
         
+        imageLoaderSpy.complete(with: .success(image0), at: 0)
+        imageLoaderSpy.complete(with: .success(image1), at: 1)
+        
         XCTAssertEqual(movieView0.title, movie0.title)
         XCTAssertEqual(movieView1.title, movie1.title)
         
-//        XCTAssertEqual(movieView0.image, UIImage(data: image0))
-//        XCTAssertEqual(movieView1.image, UIImage(data: image1))
+        XCTAssertEqual(movieView0.image?.pngData(), image0)
+        XCTAssertEqual(movieView1.image?.pngData(), image1)
     }
     
     func test_loadCompletion_rendersNoViewsWhenLoadingCompletesWithError() {
@@ -134,7 +134,7 @@ private extension MovieCollectionViewCell {
     }
     
     var image: UIImage? {
-        guard let stackView = subviews.first as? UIStackView, let imageView = stackView.arrangedSubviews.last as? UIImageView else { return nil }
+        guard let stackView = subviews.first as? UIStackView, let imageView = stackView.arrangedSubviews.first as? UIImageView else { return nil }
         return imageView.image
     }
 }
@@ -146,6 +146,6 @@ final class MovieImageDataLoaderSpy: MovieImageDataLoader {
     }
     
     func complete(with result: MovieImageDataLoader.Result, at index: Int = 0) {
-        //completions[index](result)
+        completions[index](result)
     }
 }

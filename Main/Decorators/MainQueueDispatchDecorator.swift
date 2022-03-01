@@ -30,3 +30,13 @@ extension MainQueueDispatchDecorator: MovieLoader where T == MovieLoader {
         }
     }
 }
+
+extension MainQueueDispatchDecorator: MovieImageDataLoader where T == MovieImageDataLoader {
+    func loadFeedImageData(from url: URL, completion: @escaping (MovieImageDataLoader.Result) -> Void) {
+        instance.loadFeedImageData(from: url) { [weak self] result in
+            self?.dispatch {
+                completion(result)
+            }
+        }
+    }
+}

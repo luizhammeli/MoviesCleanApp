@@ -27,6 +27,13 @@ func makeMovieController(movieLoader: MovieLoader,
 
 func makeCellController(imageLoader: MovieImageDataLoader) -> (([MovieViewModel]) -> [MovieCollectionViewCellController]) {
     return { movies in
-        movies.map { MovieCollectionViewCellController(viewModel: $0) }
+        movies.map { viewModel in
+            let controller = MovieCollectionViewCellController(viewModel: viewModel)
+            let presenter = MovieImagePresenter<WeakVarProxy<MovieCollectionViewCellController>, UIImage>(loader: MainQueueDispatchDecorator(instance: imageLoader),
+                                                                                                          view: WeakVarProxy(controller),
+                                                                                                          imageTransformer: UIImage.init)
+            controller.loadImage = presenter.load
+            return controller
+        }
     }
 }

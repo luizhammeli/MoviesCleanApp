@@ -10,8 +10,10 @@ import UIKit
 import Presentation
 
 public final class MovieCollectionViewCellController {
-    var cell: MovieCollectionViewCell?
-    var viewModel: MovieViewModel?
+    private var cell: MovieCollectionViewCell?
+    private var viewModel: MovieViewModel?
+    private var image: UIImage?
+    public var loadImage: ((URL) -> Void)?
     
     public init(viewModel: MovieViewModel) {
         self.viewModel = viewModel
@@ -21,6 +23,8 @@ public final class MovieCollectionViewCellController {
         cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MovieCollectionViewCell
         if let viewModel = viewModel {
             cell?.set(viewModel: viewModel)
+            cell?.activityIndicator.startAnimating()
+            loadImage?(viewModel.imageURL)
         }
         return cell!
     }
@@ -36,5 +40,15 @@ public final class MovieCollectionViewCellController {
     
     private func releaseCellForReuse() {
         cell = nil
+    }
+}
+
+// MARK: - MovieImageView
+extension MovieCollectionViewCellController: MovieImageView {
+    public typealias Image = UIImage
+    
+    public func display(image: Image?) {
+        cell?.activityIndicator.stopAnimating()
+        cell?.setImage(image: image)
     }
 }

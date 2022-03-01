@@ -11,15 +11,15 @@ import Domain
 public final class RemoteMovieLoader: MovieLoader {
     private let url: URL
     private let httpClient: HttpGetClient
-    
+
     public init(url: URL, httpClient: HttpGetClient) {
         self.url = url
         self.httpClient = httpClient
     }
-    
+
     public func load(completion: @escaping (MovieLoader.Result) -> Void) {
         httpClient.get(url) { [weak self] result in
-            guard self != nil else { return }            
+            guard self != nil else { return }
             switch result {
             case .success(let data):
                 guard let movies = MovieResponseMapper.toMovie(with: data) else { return completion(.failure(.invalidData)) }

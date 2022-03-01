@@ -14,17 +14,17 @@ final class MovieViewSpy: MovieLoadingView, MovieView, MovieAlertView {
         case display(alert: MovieAlertViewModel)
         case display(movies: [MovieViewModel])
     }
-    
+
     var messages: [Messages] = []
-    
+
     func display(viewModel: MovieLoadingViewModel) {
         messages.append(.display(isLoading: viewModel.isLoading))
     }
-    
+
     func display(movies: [MovieViewModel]) {
         messages.append(.display(movies: movies))
     }
-    
+
     func display(viewModel: MovieAlertViewModel) {
         messages.append(.display(alert: viewModel))
     }

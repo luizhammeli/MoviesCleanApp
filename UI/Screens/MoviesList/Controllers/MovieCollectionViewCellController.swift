@@ -14,11 +14,11 @@ public final class MovieCollectionViewCellController {
     private var viewModel: MovieViewModel?
     private var image: UIImage?
     public var loadImage: ((URL) -> Void)?
-    
+
     public init(viewModel: MovieViewModel) {
         self.viewModel = viewModel
     }
-    
+
     func view(at indexPath: IndexPath, collectionView: UICollectionView) -> UICollectionViewCell {
         cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as MovieCollectionViewCell
         if let viewModel = viewModel {
@@ -27,16 +27,16 @@ public final class MovieCollectionViewCellController {
         }
         return cell!
     }
-    
+
     func sizeForItem(parentViewSize: CGSize) -> CGSize {
         let width = (parentViewSize.width-42) / 3
         return CGSize(width: width, height: (width+(width/2)+40))
     }
-    
+
     func cancelLoad() {
         releaseCellForReuse()
     }
-    
+
     private func releaseCellForReuse() {
         cell = nil
     }
@@ -45,7 +45,7 @@ public final class MovieCollectionViewCellController {
 // MARK: - MovieImageView
 extension MovieCollectionViewCellController: MovieImageView {
     public typealias Image = UIImage
-    
+
     public func display(image: Image?) {
         cell?.setImage(image: image)
     }
@@ -55,6 +55,6 @@ extension MovieCollectionViewCellController: MovieImageView {
 
 extension MovieCollectionViewCellController: MovieLoadingView {
     public func display(viewModel: MovieLoadingViewModel) {
-        cell?.startLoading(loading: viewModel.isLoading)        
+        cell?.startLoading(loading: viewModel.isLoading)
     }
 }

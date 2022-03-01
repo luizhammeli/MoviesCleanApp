@@ -11,7 +11,7 @@ import UIKit
 
 final class WeakVarProxy<T: AnyObject> {
     private weak var instance: T?
-    
+
     init(_ instance: T) {
         self.instance = instance
     }
@@ -37,7 +37,7 @@ extension WeakVarProxy: MovieView where T: MovieView {
 
 extension WeakVarProxy: MovieImageView where T: MovieImageView, T.Image == UIImage {
     typealias Image = UIImage
-    
+
     func display(image: UIImage?) {
         instance?.display(image: image)
     }

@@ -13,11 +13,11 @@ final class URLSessionHttpGetClientTests: XCTestCase {
     override class func setUp() {
         URLProtocolStub.startIntercepting()
     }
-    
+
     override class func tearDown() {
         URLProtocolStub.stopIntercepting()
     }
-    
+
     func test_fetch_shouldRequestWithCorrectURLForPostMethod() {
         testRequest(url: anyURL(), for: .get)
     }
@@ -25,7 +25,7 @@ final class URLSessionHttpGetClientTests: XCTestCase {
     func test_fetch_shouldFailWhenRequestCompletesWithError() {
         expect(.failure(.noConnectivity), when: .init(data: nil, response: nil, error: anyNSError()))
     }
-    
+
     func test_fetch_shouldFailWithAllInvalidCases() {
         expect(.failure(.invalidResponse), when: .init(data: nil, response: nil, error: nil))
         expect(.failure(.invalidResponse), when: .init(data: anyData(), response: nil, error: nil))
@@ -35,7 +35,7 @@ final class URLSessionHttpGetClientTests: XCTestCase {
         expect(.failure(.noConnectivity), when: .init(data: nil, response: anyHTTPURLResponse(), error: nil))
         expect(.failure(.noConnectivity), when: .init(data: anyData(), response: anyURLResponse(), error: anyNSError()))
     }
-    
+
     func test_fetch_shouldFailIfRequestCompletesWithNon200Status() {
         let data = anyData()
         expect(.failure(.serverError), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 500), error: nil))
@@ -46,7 +46,7 @@ final class URLSessionHttpGetClientTests: XCTestCase {
         expect(.failure(.badRequest), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 499), error: nil))
         expect(.failure(.noConnectivity), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 600), error: nil))
     }
-    
+
     func test_fetch_shouldSucceedWithValidResponseAndData() {
         let data = anyData()
         expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil))
@@ -56,7 +56,7 @@ final class URLSessionHttpGetClientTests: XCTestCase {
         let data = Data()
         expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil))
     }
-    
+
     func test_fetch_shouldSucceedWith204Status() {
         expect(.success(nil), when: .init(data: nil, response: anyHTTPURLResponse(statusCode: 204), error: nil))
     }
@@ -70,7 +70,7 @@ extension URLSessionHttpGetClientTests {
         checkMemoryLeak(for: sut)
         return sut
     }
-    
+
     private func testRequest(url: URL, for method: HTTPMethod, file: StaticString = #filePath, line: UInt = #line) {
         let sut = makeSUT()
         var receivedRequest: URLRequest?
@@ -84,20 +84,20 @@ extension URLSessionHttpGetClientTests {
         XCTAssertTrue(receivedRequest!.url!.absoluteString.contains(url.absoluteString), file: file, line: line)
         XCTAssertEqual(receivedRequest?.httpMethod, method.rawValue, file: file, line: line)
     }
-    
+
     private func expect(_ expectedResult: HttpGetClient.Result, when stub: Stub, file: StaticString = #filePath, line: UInt = #line) {
         let sut = makeSUT()
         var receivedResult: HttpGetClient.Result?
         URLProtocolStub.stub(stub)
-        
+
         let exp = expectation(description: "Waiting for Request")
         sut.get(anyURL()) { result in
             receivedResult = result
             exp.fulfill()
         }
-        
+
         wait(for: [exp], timeout: 1)
-        
+
         switch (expectedResult, receivedResult) {
         case (.success(let expectedData), .success(let receivedData)):
             XCTAssertEqual(receivedData, expectedData, file: file, line: line)

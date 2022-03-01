@@ -13,7 +13,7 @@ final class MovieImageDataLoaderSpy: MovieImageDataLoader {
     func loadFeedImageData(from url: URL, completion: @escaping (MovieImageDataLoader.Result) -> Void) {
         completions.append(completion)
     }
-    
+
     func complete(with result: MovieImageDataLoader.Result, at index: Int = 0) {
         completions[index](result)
     }

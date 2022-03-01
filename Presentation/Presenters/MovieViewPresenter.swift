@@ -15,26 +15,26 @@ public final class MovieViewPresenter {
                                  bundle: Bundle(for: MovieViewPresenter.self),
                                  comment: "")
     }
-    
+
     public static var errorTitle: String {
         return NSLocalizedString("MOVIE_VIEW_ERROR_LOAD_MESSAGE",
                                  tableName: "Movie",
                                  bundle: Bundle(for: MovieViewPresenter.self), comment: "")
     }
-    
+
     public static var errorMessage: String {
         return NSLocalizedString("MOVIE_VIEW_ERROR_LOAD_TITLE",
                                  tableName: "Movie",
                                  bundle: Bundle(for: MovieViewPresenter.self), comment: "")
     }
-    
+
     private let imageBaseURL: String
     private let loader: MovieLoader
 
     private let loadingView: MovieLoadingView
     private let alertView: MovieAlertView
     private let movieView: MovieView
-    
+
     public init(imageBaseURL: String,
                 loader: MovieLoader,
                 loadingView: MovieLoadingView,
@@ -46,12 +46,12 @@ public final class MovieViewPresenter {
         self.imageBaseURL = imageBaseURL
         self.alertView = alertView
     }
-    
+
     public func loadMovies() {
         loadingView.display(viewModel: .init(isLoading: true))
         loader.load { [weak self] result in
             guard let self = self else { return }
-            self.loadingView.display(viewModel: .init(isLoading: false))            
+            self.loadingView.display(viewModel: .init(isLoading: false))
             switch result {
             case .success(let movies):
                 self.movieView.display(movies: self.toMoviesViewModel(movies: movies))
@@ -61,7 +61,7 @@ public final class MovieViewPresenter {
             }
         }
     }
-    
+
     private func toMoviesViewModel(movies: [Movie]) -> [MovieViewModel] {
         movies.compactMap { movie in
             guard let url = URL(string: "\(imageBaseURL + movie.posterPath)") else { return nil }

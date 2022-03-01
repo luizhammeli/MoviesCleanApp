@@ -17,8 +17,8 @@ func anyData(stringValue: String = "https://test.com") -> Data {
     return Data("invalid json".description.utf8)
 }
 
-func anyMovie(id: Int, title: String, poster_path: String) -> Movie {
-    return Movie(id: id, title: title, posterPath: poster_path)
+func anyMovie(id: Int, title: String, posterPath: String) -> Movie {
+    return Movie(id: id, title: title, posterPath: posterPath)
 }
 
 func anyMovieResponse(movie: [Movie]) -> MovieResponse {

@@ -12,15 +12,14 @@ final class MovieImageViewSpy: MovieLoadingView, MovieImageView {
         case display(isLoading: Bool)
         case displayImage(String?)
     }
-    
-    
+
     typealias Image = ImageStub
     var messages: [Messages] = []
-    
+
     func display(viewModel: MovieLoadingViewModel) {
         messages.append(.display(isLoading: viewModel.isLoading))
     }
-    
+
     func display(image: Image?) {
         messages.append(.displayImage(image?.id))
     }

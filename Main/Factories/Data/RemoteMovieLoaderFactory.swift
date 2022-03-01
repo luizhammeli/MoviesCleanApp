@@ -12,6 +12,6 @@ func makeRemoteMovieLoaderFactory(url: URL, httpClient: HttpGetClient) -> Remote
     RemoteMovieLoader(url: url, httpClient: httpClient)
 }
 
-func makeRemoteMovieImageLoaderFactory(httpClient: HttpGetClient) -> RemoteMovieImageDataLoader {    
+func makeRemoteMovieImageLoaderFactory(httpClient: HttpGetClient) -> RemoteMovieImageDataLoader {
     RemoteMovieImageDataLoader(client: httpClient)
 }

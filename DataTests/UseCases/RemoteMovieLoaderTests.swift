@@ -12,59 +12,59 @@ import Data
 final class RemoteMovieLoaderTests: XCTestCase {
     func test_init_doesNotRequestDataFromURl() {
         let (_, clientSpy) = makeSut()
-        
+
         XCTAssertEqual(clientSpy.messagesCount, 0)
     }
-    
+
     func test_load_requestsDataFromURl() {
         let url = anyURL()
         let (sut, clientSpy) = makeSut(url: url)
-        
+
         sut.load(completion: { _ in })
-        
+
         XCTAssertEqual(clientSpy.requestedURLS, [url])
     }
-    
+
     func test_loadTwice_requestsDataFromURlTwice() {
         let url = anyURL()
         let (sut, clientSpy) = makeSut(url: url)
-        
+
         sut.load(completion: { _ in })
         sut.load(completion: { _ in })
-        
+
         XCTAssertEqual(clientSpy.requestedURLS, [url, url])
     }
-    
+
     func test_load_deliversErrorOnClientError() {
         let (sut, clientSpy) = makeSut()
         expect(sut: sut, toCompleteWith: .failure(.unexpected)) {
             clientSpy.complete(with: .failure(.unauthorized))
         }
     }
-    
+
     func test_load_deliversErrorOn200HttpResponseWithInvalidData() {
         let (sut, clientSpy) = makeSut()
         expect(sut: sut, toCompleteWith: .failure(.invalidData)) {
             clientSpy.complete(with: .success(anyData()))
         }
     }
-    
+
     func test_load_deliversErrorOn200HttpResponseWithEmptyData() {
         let (sut, clientSpy) = makeSut()
         expect(sut: sut, toCompleteWith: .failure(.invalidData)) {
             clientSpy.complete(with: .success(Data()))
         }
     }
-    
+
     func test_load_deliversSuccessOn200HttpResponseWithCorrectData() {
         let (sut, clientSpy) = makeSut()
-        let movies = [anyMovie(id: 10, title: "Test Movie", poster_path: "/path")]
+        let movies = [anyMovie(id: 10, title: "Test Movie", posterPath: "/path")]
         let response = anyMovieResponse(movie: movies)
         expect(sut: sut, toCompleteWith: .success(movies)) {
             clientSpy.complete(with: .success(response.toData()))
         }
     }
-    
+
     func test_load_deliversSuccessWithNoItemsOn200HttpResponseWithValidData() {
         let (sut, clientSpy) = makeSut()
         let response = anyMovieResponse(movie: [])
@@ -72,12 +72,12 @@ final class RemoteMovieLoaderTests: XCTestCase {
             clientSpy.complete(with: .success(response.toData()))
         }
     }
-    
+
     func test_load_doesNotDeliversResultAfterSutHasBeenDealocatted() {
         let clientSPY = HttpGetClientSpy()
         var sut: RemoteMovieLoader? = RemoteMovieLoader(url: anyURL(), httpClient: clientSPY)
         var capturedErrors: [MovieLoader.Result] = []
-        
+
         sut?.load(completion: { capturedErrors.append($0) })
         sut = nil
         clientSPY.complete(with: .failure(.noConnectivity))
@@ -96,7 +96,7 @@ private extension RemoteMovieLoaderTests {
         checkMemoryLeak(for: sut)
         return (sut, clientSPY)
     }
-    
+
     func expect(sut: RemoteMovieLoader,
                         toCompleteWith expectedResult: MovieLoader.Result,
                         when action: () -> Void,

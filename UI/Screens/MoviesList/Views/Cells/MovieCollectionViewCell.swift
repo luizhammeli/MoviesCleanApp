@@ -20,7 +20,7 @@ public final class MovieCollectionViewCell: UICollectionViewCell {
         image.alpha = 0
         return image
     }()
-    
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
@@ -29,34 +29,34 @@ public final class MovieCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .center
         return label
     }()
-    
+
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel])
         stackView.axis = .vertical
         stackView.spacing = 5
         return stackView
     }()
-        
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func set(viewModel: MovieViewModel) {        
+
+    func set(viewModel: MovieViewModel) {
         titleLabel.text = viewModel.title
     }
-    
+
     func setImage(image: UIImage?) {
         self.imageView.image = image
         UIView.animate(withDuration: 0.2) {
             self.imageView.alpha = 1
         }
     }
-    
+
     func startLoading(loading: Bool) {
         if loading {
             activityIndicator.startAnimating()
@@ -72,12 +72,12 @@ extension MovieCollectionViewCell: CodeView {
         self.addSubview(mainStackView)
         mainStackView.addSubview(activityIndicator)
     }
-    
+
     public func setupConstraints() {
         mainStackView.fillSuperview()
         activityIndicator.centerInSuperview()
         imageView.anchor(heightAnchor: heightAnchor, heightMultiplier: 0.8, widthMultiplier: 0)
     }
-    
+
     public func setupAdditionalConfiguration() {}
 }

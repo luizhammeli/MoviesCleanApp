@@ -13,7 +13,7 @@ final class Environment {
         case apiImageBaseURL = "API_IMAGE_BASE_URL"
         case apiKey = "API_KEY"
     }
-    
+
     static func variable(for key: Variables) -> String {
         return Bundle.main.infoDictionary?[key.rawValue] as! String
     }

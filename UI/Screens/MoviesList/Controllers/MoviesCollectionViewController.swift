@@ -10,16 +10,16 @@ import Presentation
 
 public final class MoviesCollectionViewController: UICollectionViewController {
     private var activityIndicator = UIActivityIndicatorView(style: .large)
-    
+
     public var loadMovies: (() -> Void)?
     public var loadCells: (([MovieViewModel]) -> [MovieCollectionViewCellController])?
-    
+
     private var movies: [MovieCollectionViewCellController] = [] {
         didSet {
             collectionView.reloadData()
         }
     }
-    
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -27,41 +27,41 @@ public final class MoviesCollectionViewController: UICollectionViewController {
         loadMovies?()
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
+
     private func registerCells() {
         self.collectionView?.register(MovieCollectionViewCell.self)
         self.collectionView?.register(UICollectionViewCell.self, ofKind: UICollectionView.elementKindSectionFooter)
     }
-    
+
     private func setupCollectionView() {
-        registerCells()        
+        registerCells()
         title = MovieViewPresenter.title
     }
-    
+
     public override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
-    
+
     public override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return movies[indexPath.item].view(at: indexPath, collectionView: collectionView)
     }
-    
+
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return movies[indexPath.item].sizeForItem(parentViewSize: view.frame.size)
     }
-    
+
     public override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         movies[indexPath.item].cancelLoad()
     }
-    
+
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 40
     }
-    
+
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 12
     }
-    
+
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 20, left: 8, bottom: 10, right: 8)
     }
@@ -72,11 +72,11 @@ extension MoviesCollectionViewController: CodeView {
     public func buildViewHierarchy() {
         view.addSubview(activityIndicator)
     }
-    
+
     public func setupConstraints() {
         activityIndicator.centerInSuperview()
     }
-    
+
     public func setupAdditionalConfiguration() {}
 }
 
@@ -114,4 +114,3 @@ extension MoviesCollectionViewController: MovieView {
         self.movies = loadCells?(movies) ?? []
     }
 }
-

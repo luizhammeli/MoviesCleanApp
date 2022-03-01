@@ -616,7 +616,7 @@
 				25583E7627CD67BD00957173 /* UseCase */,
 				25FD09BF27C97ADB0084F3FC /* Localization */,
 				256F552827C96D7D00E6A03A /* Views */,
-				25364CE527C918A60039496C /* MovieViewPresenterTests.swift */,
+				25583E8A27CE51DF00957173 /* Presenters */,
 			);
 			path = PresentationTests;
 			sourceTree = "<group>";
@@ -643,6 +643,14 @@
 				25583E8027CD881200957173 /* UIImage+ColorImage.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		25583E8A27CE51DF00957173 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				25364CE527C918A60039496C /* MovieViewPresenterTests.swift */,
+			);
+			path = Presenters;
 			sourceTree = "<group>";
 		};
 		256A316C27CB9C9E0054F1F1 /* UI */ = {

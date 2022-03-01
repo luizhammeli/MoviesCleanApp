@@ -2,7 +2,7 @@
 
 ![](https://github.com/luizhammeli/MoviesCleanApp/workflows/CI-iOS/badge.svg)
 
-MoviesCleanApp its a very simple study project using Clean Architecture concepts with MPV as UI anchitectural pattern. This project uses the TMDB api to show some currentily movies.
+MoviesCleanApp is a very simple study project using Clean Architecture concepts with MPV as an UI anchitectural pattern. This project uses the TMDB api to show some current movies.
 
 ## Story: Customer requests to see their image feed
 
@@ -53,5 +53,5 @@ Build and run the Main module to execute the app in the simulator.
 - Cancel the request task when cell is not visible (In Progress), to avoid unncessary request.
 
 ## Obs:
-- The UI tests was added in the main module as a integration tests between the Main, UI and Presentation layers.
+- The UI tests were added in the main module as integration tests between the Main, UI and Presentation layers.
 - The project is just using the default URLSession cache policy, as a next feature we can think about a better custom policy rules.

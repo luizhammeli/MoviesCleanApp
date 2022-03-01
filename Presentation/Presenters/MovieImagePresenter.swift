@@ -8,11 +8,6 @@
 import Foundation
 import Domain
 
-public protocol MovieImageView {
-    associatedtype Image: Equatable
-    func display(image: Image?)
-}
-
 public final class MovieImagePresenter<View: MovieImageView, Image> where View.Image == Image {
     let loader: MovieImageDataLoader
     let view: View

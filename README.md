@@ -4,7 +4,7 @@
 
 MoviesCleanApp is a very simple study project using Clean Architecture concepts with MPV as an UI anchitectural pattern. This project uses the TMDB api to show some current movies.
 
-## Story: Customer requests to see their image feed
+## Story: Customer requests to see some in theater movies
 
 **Narrative:**
 
@@ -55,4 +55,5 @@ Build and run the Main module to execute the app in the simulator.
 
 ## Obs:
 - The UI tests were added in the main module as integration tests between the Main, UI and Presentation layers.
-- The project is just using the default URLSession cache policy, as a next feature we can think about a better custom policy rules.
+- The project is just using the default URLSession cache policy, as a next feature we can think about a better custom policy rules using some local databse as Coredata.
+- The Decorators and Proxy patterns was added mainly as way to not leaking composition details to other layers components like Use Cases or Presenters.

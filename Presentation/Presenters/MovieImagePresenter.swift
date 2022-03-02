@@ -9,10 +9,10 @@ import Foundation
 import Domain
 
 public final class MovieImagePresenter<View: MovieImageView, Image> where View.Image == Image {
-    let loader: MovieImageDataLoader
-    let view: View
-    let alertView: MovieLoadingView
-    let imageTransformer: (Data) -> Image?
+    private let loader: MovieImageDataLoader
+    private let view: View
+    private let alertView: MovieLoadingView
+    private let imageTransformer: (Data) -> Image?
 
     public init(loader: MovieImageDataLoader, loadingView: MovieLoadingView, view: View, imageTransformer: @escaping (Data) -> Image?) {
         self.loader = loader

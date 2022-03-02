@@ -113,17 +113,6 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3804F5BD27C86532009A6CE6"
-               BuildableName = "MoviesCleanAppEndToEndTests.xctest"
-               BlueprintName = "MoviesCleanAppEndToEndTests"
-               ReferencedContainer = "container:MoviesCleanApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "25364CDF27C918A60039496C"
                BuildableName = "PresentationTests.xctest"
                BlueprintName = "PresentationTests"

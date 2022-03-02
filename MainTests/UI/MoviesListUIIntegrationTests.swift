@@ -45,7 +45,7 @@ final class MoviesListUIIntegrationTests: XCTestCase {
         simulateAndAssertTheImageLoadingIndicatorWhenLoaderCompletes(with: .failure(.unexpected))
     }
 
-    func test_loadCompletion_rendersSuccessfullyLoadedFeed() {
+    func test_loadCompletion_rendersSuccessfullyLoadedMovies() {
         let imageLoaderSpy = MovieImageDataLoaderSpy()
         let (sut, loaderSpy) = makeSUT(imageLoader: imageLoaderSpy)
         XCTAssertEqual(sut.numberOfRenderedMovieViews, 0)
@@ -57,7 +57,7 @@ final class MoviesListUIIntegrationTests: XCTestCase {
         let image1 = UIImage.make(withColor: .red).pngData()!
 
         sut.loadViewIfNeeded()
-        loaderSpy.complete(with: .success([movie0, movie1]), at: 0)
+        loaderSpy.complete(with: .success([movie0, movie1]))
 
         XCTAssertEqual(sut.numberOfRenderedMovieViews, 2)
 
@@ -79,7 +79,7 @@ final class MoviesListUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.numberOfRenderedMovieViews, 0)
 
         sut.loadViewIfNeeded()
-        loaderSpy.complete(with: .failure(.unexpected), at: 0)
+        loaderSpy.complete(with: .failure(.unexpected))
 
         XCTAssertEqual(sut.numberOfRenderedMovieViews, 0)
     }
@@ -92,7 +92,7 @@ final class MoviesListUIIntegrationTests: XCTestCase {
         let exp = expectation(description: #function)
 
         DispatchQueue.global().async {
-            loaderSpy.complete(with: .failure(.unexpected), at: 0)
+            loaderSpy.complete(with: .failure(.unexpected))
             exp.fulfill()
         }
 
@@ -103,15 +103,18 @@ final class MoviesListUIIntegrationTests: XCTestCase {
 
 // MARK: - Helpers
 private extension MoviesListUIIntegrationTests {
-    func makeSUT(imageLoader: MovieImageDataLoader = MovieImageDataLoaderSpy()) -> (MoviesCollectionViewController, RemoteMovieLoaderSpy) {
+    func makeSUT(imageLoader: MovieImageDataLoaderSpy = MovieImageDataLoaderSpy()) -> (MoviesCollectionViewController, RemoteMovieLoaderSpy) {
         let loader = RemoteMovieLoaderSpy()
         let sut = makeMovieController(movieLoader: loader, imageLoader: imageLoader)
         checkMemoryLeak(for: loader)
+        checkMemoryLeak(for: imageLoader)
         checkMemoryLeak(for: sut)
         return (sut, loader)
     }
 
-    private func localized(key: String, file: StaticString = #filePath, line: UInt = #line) -> String {
+    private func localized(key: String,
+                           file: StaticString = #filePath,
+                           line: UInt = #line) -> String {
         let bundle = Bundle(for: MovieViewPresenter.self)
         let localizedTitle = bundle.localizedString(forKey: key, value: nil, table: "Movie")
 
@@ -122,7 +125,9 @@ private extension MoviesListUIIntegrationTests {
         return localizedTitle
     }
 
-    private func simulateAndAssertTheLoadingIndicatorWhenLoaderCompletes(with result: MovieLoader.Result, file: StaticString = #filePath, line: UInt = #line) {
+    private func simulateAndAssertTheLoadingIndicatorWhenLoaderCompletes(with result: MovieLoader.Result,
+                                                                         file: StaticString = #filePath,
+                                                                         line: UInt = #line) {
         let (sut, loaderSpy) = makeSUT()
         sut.loadViewIfNeeded()
 
@@ -140,7 +145,7 @@ private extension MoviesListUIIntegrationTests {
         let (sut, loaderSpy) = makeSUT(imageLoader: imageLoaderSpy)
         sut.loadViewIfNeeded()
 
-        loaderSpy.complete(with: .success([anyMovie(id: 10, title: "", posterPath: "")]), at: 0)
+        loaderSpy.complete(with: .success([anyMovie(id: 10, title: "", posterPath: "\(UUID().description)")]), at: 0)
         let movieView = sut.movieViewAt(index: 0)
 
         XCTAssertTrue(movieView.isLoadingIndicatorVisible!, file: file, line: line)
@@ -170,12 +175,14 @@ private extension MoviesCollectionViewController {
 // MARK: - Helpers MovieCollectionViewCell
 private extension MovieCollectionViewCell {
     var title: String? {
-        guard let stackView = subviews.first as? UIStackView, let titleLabel = stackView.arrangedSubviews.last as? UILabel else { return nil }
+        guard let stackView = subviews.first as? UIStackView,
+                let titleLabel = stackView.arrangedSubviews.last as? UILabel else { return nil }
         return titleLabel.text
     }
 
     var image: UIImage? {
-        guard let stackView = subviews.first as? UIStackView, let imageView = stackView.arrangedSubviews.first as? UIImageView else { return nil }
+        guard let stackView = subviews.first as? UIStackView,
+                let imageView = stackView.arrangedSubviews.first as? UIImageView else { return nil }
         return imageView.image
     }
 

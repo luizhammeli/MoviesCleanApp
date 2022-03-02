@@ -8,25 +8,26 @@
 import Foundation
 import Domain
 
-// public final class DefaultMovieImageDataLoaderTask: MovieImageDataLoaderTask {
+//TODO: - DefaultMovieImageDataLoaderTask
+//public final class DefaultMovieImageDataLoaderTask: MovieImageDataLoaderTask {
 //    let task: HttpClientTask
-//
+//    
 //    init(task: HttpClientTask) {
 //        self.task = task
 //    }
-//
+//    
 //    public func cancel() {
 //        task.cancel()
 //    }
-// }
+//}
 
 public final class RemoteMovieImageDataLoader: MovieImageDataLoader {
     let client: HttpGetClient
-
+    
     public init(client: HttpGetClient) {
         self.client = client
     }
-
+    
     public func loadFeedImageData(from url: URL, completion: @escaping (MovieImageDataLoader.Result) -> Void) {
         client.get(url) { [weak self] result in
             guard self != nil else { return }
@@ -40,6 +41,5 @@ public final class RemoteMovieImageDataLoader: MovieImageDataLoader {
                 completion(.success(data))
             }
         }
-        // return DefaultFeedImageDataLoaderTask(task: task)
     }
 }

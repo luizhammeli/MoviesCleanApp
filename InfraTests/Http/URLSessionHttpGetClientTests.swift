@@ -18,15 +18,15 @@ final class URLSessionHttpGetClientTests: XCTestCase {
         URLProtocolStub.stopIntercepting()
     }
 
-    func test_fetch_shouldRequestWithCorrectURLForPostMethod() {
+    func test_get_shouldRequestWithCorrectURLForPostMethod() {
         testRequest(url: anyURL(), for: .get)
     }
 
-    func test_fetch_shouldFailWhenRequestCompletesWithError() {
+    func test_get_shouldFailWhenRequestCompletesWithError() {
         expect(.failure(.noConnectivity), when: .init(data: nil, response: nil, error: anyNSError()))
     }
 
-    func test_fetch_shouldFailWithAllInvalidCases() {
+    func test_get_shouldFailWithAllInvalidCases() {
         expect(.failure(.invalidResponse), when: .init(data: nil, response: nil, error: nil))
         expect(.failure(.invalidResponse), when: .init(data: anyData(), response: nil, error: nil))
         expect(.failure(.invalidResponse), when: .init(data: nil, response: anyURLResponse(), error: nil))
@@ -36,7 +36,7 @@ final class URLSessionHttpGetClientTests: XCTestCase {
         expect(.failure(.noConnectivity), when: .init(data: anyData(), response: anyURLResponse(), error: anyNSError()))
     }
 
-    func test_fetch_shouldFailIfRequestCompletesWithNon200Status() {
+    func test_get_shouldFailIfRequestCompletesWithNon200Status() {
         let data = anyData()
         expect(.failure(.serverError), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 500), error: nil))
         expect(.failure(.badRequest), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 400), error: nil))
@@ -47,17 +47,17 @@ final class URLSessionHttpGetClientTests: XCTestCase {
         expect(.failure(.noConnectivity), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 600), error: nil))
     }
 
-    func test_fetch_shouldSucceedWithValidResponseAndData() {
+    func test_get_shouldSucceedWithValidResponseAndData() {
         let data = anyData()
         expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil))
     }
 
-    func test_fetch_shouldSucceedWithEmptyData() {
+    func test_get_shouldSucceedWithEmptyData() {
         let data = Data()
         expect(.success(data), when: .init(data: data, response: anyHTTPURLResponse(statusCode: 200), error: nil))
     }
 
-    func test_fetch_shouldSucceedWith204Status() {
+    func test_get_shouldSucceedWith204Status() {
         expect(.success(nil), when: .init(data: nil, response: anyHTTPURLResponse(statusCode: 204), error: nil))
     }
 }

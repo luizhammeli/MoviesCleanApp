@@ -10,7 +10,7 @@ import Domain
 import Presentation
 
 final class MovieViewPresenterTests: XCTestCase {
-    func test_init_shouldNotLoadMovies() {
+    func test_init_doesNotSendAnyMessageToView() {
         let (_, loader) = makeSUT()
         XCTAssertTrue(loader.completions.isEmpty)
     }
@@ -23,7 +23,7 @@ final class MovieViewPresenterTests: XCTestCase {
         XCTAssertEqual(viewSpy.messages, [.display(isLoading: true)])
     }
 
-    func test_didFinishLoadingMoviesWithError_shouldSendIsLoadingViewMessage() {
+    func test_didFinishLoadingMoviesWithError_shouldStopLoadingAndDisplayAlertMessage() {
         let viewSpy = MovieViewSpy()
         let (sut, loader) = makeSUT(loadingView: viewSpy, alertView: viewSpy)
 
@@ -32,11 +32,11 @@ final class MovieViewPresenterTests: XCTestCase {
 
         XCTAssertEqual(viewSpy.messages, [.display(isLoading: true),
                                           .display(isLoading: false),
-                                          .display(alert: MovieAlertViewModel(title: getErrorMessages().0,
-                                                                              message: getErrorMessages().1))])
+                                          .display(alert: MovieAlertViewModel(title: getErrorMessages().title,
+                                                                              message: getErrorMessages().message))])
     }
 
-    func test_didFinishLoadingMoviesWithSuccess_shouldSendIsLoadingViewMessage() {
+    func test_didFinishLoadingMoviesWithSuccess_shouldStopLoadingAndDisplayCorrectMovieData() {
         let viewSpy = MovieViewSpy()
         let baseURL = anyURL()
         let (sut, loader) = makeSUT(baseURL: baseURL.description, loadingView: viewSpy, movieView: viewSpy)
@@ -78,7 +78,7 @@ private extension MovieViewPresenterTests {
                                  bundle: Bundle(for: MovieViewPresenter.self), comment: "")
     }
 
-    func getErrorMessages() -> (String, String) {
+    func getErrorMessages() -> (title: String, message: String) {
         return (getLocalizedString(for: MovieViewPresenter.errorTitle),
                 getLocalizedString(for: MovieViewPresenter.errorMessage))
     }

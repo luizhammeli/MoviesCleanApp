@@ -29,7 +29,6 @@ final class FeedLocalizationTests: XCTestCase {
 }
 
 // MARK: - Helpers
-
 private extension FeedLocalizationTests {
     private typealias LocalizedBundle = (bundle: Bundle, localization: String)
 

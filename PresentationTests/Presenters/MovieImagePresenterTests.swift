@@ -10,7 +10,7 @@ import Presentation
 import Domain
 
 final class MovieImagePresenterTests: XCTestCase {
-    func test_init_shouldNotLoadMovies() {
+    func test_init_doesNotSendAnyMessageToView() {
         let (_, loader, _) = makeSUT()
         XCTAssertTrue(loader.completions.isEmpty)
     }
@@ -22,7 +22,7 @@ final class MovieImagePresenterTests: XCTestCase {
         XCTAssertEqual(viewSpy.messages, [.display(isLoading: true)])
     }
 
-    func test_didFinishLoadingImageWithError_shouldSendCorrectMessages() {
+    func test_didFinishLoadingImageWithError_shouldStopLoadingAndDisplayAlertMessage() {
         let (sut, loader, viewSpy) = makeSUT()
 
         sut.load(url: anyURL())
@@ -33,7 +33,7 @@ final class MovieImagePresenterTests: XCTestCase {
                                           .displayImage(nil)])
     }
 
-    func test_didFinishLoadingImageWithSuccess_shouldSendCorrectMessages() {
+    func test_didFinishLoadingImageWithSuccess_shouldStopLoadingAndDisplayCorrectImage() {
         let (sut, loader, viewSpy) = makeSUT()
         let idValue = "invalid json".description
 
@@ -51,6 +51,11 @@ private extension MovieImagePresenterTests {
         let loader = MovieImageDataLoaderSpy()
         let viewSpy = MovieImageViewSpy()
         let sut = MovieImagePresenter(loader: loader, loadingView: viewSpy, view: viewSpy, imageTransformer: ImageStub.init)
+        
+        checkMemoryLeak(for: loader)
+        checkMemoryLeak(for: viewSpy)
+        checkMemoryLeak(for: sut)
+        
         return (sut, loader, viewSpy)
     }
 

@@ -14,7 +14,7 @@ final class RemoteMovieLoaderSpy: MovieLoader {
         completions.append(completion)
     }
 
-    func complete(with result: MovieLoader.Result, at index: Int) {
+    func complete(with result: MovieLoader.Result, at index: Int = 0) {
         completions[index](result)
     }
 }

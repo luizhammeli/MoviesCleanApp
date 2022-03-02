@@ -9,7 +9,7 @@ MoviesCleanApp is a very simple study project using Clean Architecture concepts 
 **Narrative:**
 
 As an online user
-I want the app to automatically load the latest movies in theaters
+I want the app to automatically load the latest movies in theaters.
 So I can always be updated
 
 ## Use Cases

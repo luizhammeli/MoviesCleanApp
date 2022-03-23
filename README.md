@@ -45,7 +45,6 @@ In order to make easy reason about it the project was organised into six modules
 Build and run the Main module to execute the app in the simulator.
 
 ## Improvements:
-
 - Improve the project features (Ex: Add some detail screen using some Router/Coordinator in the navigation flow)
 - Improve the UI/UX
 - Add pagination
